@@ -14,22 +14,23 @@
     </div>
     <div class="p-field">
       <label for="password" >Password</label><br>
-      <p-password
+      <input
+        type="password"
+        pInputText
         [(ngModel)]="password"
-        [feedback]="false"
-        placeholder="Password"
-      ></p-password>
+        placeholder="Your Password"
+      />
     </div>
     <div class="helpers">
       <div class="remember">
-      <p-checkbox name="group1" value="New York" [(ngModel)]="selectedState" inputId="ny"></p-checkbox>
+      <p-checkbox name="group1" value="remember" [(ngModel)]="selectedState" inputId="r"></p-checkbox>
       <label for="ny"> Remember Me</label>
       </div>
       <a href="#" style="color:var(--blue-800)">Forgot Password</a>
     </div>
-    <p-button class="p-button-sm" label="Sgin In" icon="pi pi-sign-in"></p-button>
+    <p-button class="p-button-sm" label="Sgin In" icon="pi pi-sign-in" ></p-button>
   </div>
-  <p id="sign-up">Dont you have account <a href="#">Sign up</a>.</p>
+  <p id="sign-up">Dont you have account ?<a href="/signup"> Sign up </a>.</p>
   </div>
 <img src="../../../assets/img/logo-2.gif" alt="Kongu Logo" width="400" height="400">
 </section>

@@ -21,8 +21,9 @@ section h2 {
 .p-field {
   text-align: left;
 }
-input {
+input, p-password {
   margin: 0.5rem 0rem;
+  width: 100%;
 }
 .helpers {
   display: flex;
