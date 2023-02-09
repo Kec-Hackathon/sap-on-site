@@ -1,1 +1,35 @@
-<p>login works!</p>
+<section>
+  <div class="login">
+    <h2>Welcome Back </h2>
+  <p>Welcome back! Please enter your details.</p>
+  <div class="login-form">
+    <div class="p-field">
+      <label for="email" >Email</label><br>
+      <input
+        type="email"
+        pInputText
+        [(ngModel)]="email"
+        placeholder="e.g.example@kongu.edu"
+      />
+    </div>
+    <div class="p-field">
+      <label for="password" >Password</label><br>
+      <p-password
+        [(ngModel)]="password"
+        [feedback]="false"
+        placeholder="Password"
+      ></p-password>
+    </div>
+    <div class="helpers">
+      <div class="remember">
+      <p-checkbox name="group1" value="New York" [(ngModel)]="selectedState" inputId="ny"></p-checkbox>
+      <label for="ny"> Remember Me</label>
+      </div>
+      <a href="#" style="color:var(--blue-800)">Forgot Password</a>
+    </div>
+    <p-button class="p-button-sm" label="Sgin In" icon="pi pi-sign-in"></p-button>
+  </div>
+  <p id="sign-up">Dont you have account <a href="#">Sign up</a>.</p>
+  </div>
+<img src="../../../assets/img/logo-2.gif" alt="Kongu Logo" width="400" height="400">
+</section>
