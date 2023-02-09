@@ -31,8 +31,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/primeicons/primeicons.css",
-              "node_modules/primeng/resources/primeng.min.css",
+              "./node_modules/primeicons/primeicons.css",
+              "./node_modules/primeng/resources/primeng.min.css",
               {
                 "input": "src/assets/themes/saga-blue-theme.scss",
                 "bundleName": "saga-light-blue",
