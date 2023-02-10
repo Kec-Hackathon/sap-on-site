@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StudentService } from './service/student.service';
 
@@ -11,8 +12,12 @@ export class StudentComponent implements OnInit {
   userDetail: any
   greet!: string;
   hrs = new Date().getHours();
+  showSidebar: boolean = false;
+  pointObtained!:number;
+  pointWanted!:number;
+  mark!:number;
 
-  constructor(private route: ActivatedRoute, private studentService: StudentService) { }
+  constructor(private route: ActivatedRoute, private studentService: StudentService, @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
     this.calculateGreet();
@@ -32,5 +37,19 @@ export class StudentComponent implements OnInit {
       this.greet = 'Good Afternoon';
     else if (this.hrs >= 17 && this.hrs <= 24)
       this.greet = 'Good Evening';
+  }
+
+  onProfileClicked() {
+    this.showSidebar = true;    
+  }
+
+  onThemeChange(event: any){
+    let themeLink = this.document.getElementById('app-theme') as HTMLLinkElement;
+
+    if(event.checked) {
+        themeLink.href = 'arya-dark-blue.css';
+    } else {
+      themeLink.href = 'saga-light-blue.css';
+    }
   }
 }

@@ -1,0 +1,78 @@
+<section class="mt-8">
+  <div class="surface-card p-4">
+    <form [formGroup]="clubForm" class="grid formgrid p-fluid">
+      <div class="field mb-4 col-12">
+        <label for="club_name" class="font-medium text-900">
+          Club Name or Leadership Type
+        </label>
+        <input
+          id="club_name"
+          type="text"
+          pinputtext
+          class="p-inputtext p-component p-element"
+          formControlName="clubName"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="mark" class="font-medium text-900"> Position </label>
+        <p-dropdown
+          [options]="availalePositions"
+          placeholder="Select your position"
+          optionLabel="label"
+          [showClear]="true"
+          id="depatment"
+          (onChange)="onPositionChange($event)"
+          formControlName="position"
+        ></p-dropdown>
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="position" class="font-medium text-900"> Mark </label>
+        <input
+          id="position"
+          type="text"
+          pinputtext
+          class="p-inputtext p-component p-element"
+          formControlName="mark"
+          readonly
+        />
+      </div>
+      <div class="surface-border border-top-1 opacity-50 mb-3 col-12"></div>
+      <div class="field my-4 flex col-12">
+        <p-fileUpload
+          #fubauto
+          mode="basic"
+          name="demo"
+          accept="image/*"
+          maxFileSize="2000000"
+          customUpload="true"
+          (uploadHandler)="onImageUpload($event)"
+          [auto]="true"
+          chooseLabel="Upload Proof"
+          class="mr-2"
+        ></p-fileUpload>
+        <img *ngIf="imageDisplay" [width]="150" [src]="imageDisplay" alt="Proof" />
+      </div>
+      <div class="surface-border border-top-3 opacity-50 mb-3 col-12"></div>
+      <div class="col-12 flex justify-content-center">
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Submit"
+          class="p-button-raised p-button-success w-auto"
+          *ngIf="!isLoading"
+          (click)="onFormSubmitted()"
+          [disabled]="clubForm.invalid"
+        ></button>
+        <p-progressSpinner
+          [style]="{ width: '50px', height: '50px' }"
+          styleClass="custom-spinner"
+          strokeWidth="8"
+          fill="var(--surface-ground)"
+          animationDuration=".5s"
+          *ngIf="isLoading"
+        ></p-progressSpinner>
+      </div>
+    </form>
+  </div>
+</section>

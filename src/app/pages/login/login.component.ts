@@ -14,7 +14,9 @@ export class LoginComponent implements OnInit {
   loading: boolean = false;
   formSubmitAttempt: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private messageService: MessageService, private loginService: LoginService, private localStorage: LocalStorageService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private messageService: MessageService, private loginService: LoginService, private localStorage: LocalStorageService, private router: Router) {
+
+  }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -26,6 +28,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.formSubmitAttempt = true;
+    this.loading = true
 
     if (this.form.valid) {
       this.loginService.loginUser(this.form.value).subscribe((res) => {
@@ -33,8 +36,10 @@ export class LoginComponent implements OnInit {
           if (this.form.value.rememberMe[0]) {
             this.localStorage.setLocalStorage('token', res.token);
           }
+          this.loading = false;
           this.router.navigate([`s/${res.user}`]);
         } else {
+          this.loading =  false
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
@@ -45,9 +50,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  load() {
-    this.loading = true;
-    setTimeout(() => this.loading = false, 1000);
-  }
+  
 }
 

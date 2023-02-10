@@ -1,0 +1,103 @@
+<section class="mt-8">
+  <div class="surface-card p-4">
+    <form [formGroup]="vacForm" class="grid formgrid p-fluid">
+      <div class="field mb-4 col-6">
+        <label for="courseName" class="font-medium text-900">Course Name</label>
+        <input
+          id="courseName"
+          type="text"
+          pinputtext
+          formControlName="courseName"
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="coursePlatform" class="font-medium text-900">
+          Course Platform
+        </label>
+        <input
+          id="coursePlatform"
+          type="text"
+          pinputtext
+          formControlName="coursePlatform"
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="courseMode" class="font-medium text-900">Course Mode</label>
+        <p-dropdown
+          [options]="mode"
+          [showClear]="true"
+          id="courseMode"
+          formControlName="mode"
+          placeholder="Select Course Mode"
+        ></p-dropdown>
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="courseDateRange" class="font-medium text-900">
+          Event Date Range
+        </label>
+        <p-calendar
+          dateFormat="dd-mm-yy"
+          id="courseDateRange"
+          formControlName="courseDateRange"
+          selectionMode="range"
+          [readonlyInput]="true"
+          inputId="range"
+        ></p-calendar>
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="mark" class="font-medium text-900">Mark</label>
+        <input
+          id="mark"
+          type="number"
+          pinputtext
+          formControlName="mark"
+          class="p-inputtext p-component p-element"
+          readonly
+        />
+      </div>
+      <div class="field my-4 flex col-12">
+        <p-fileUpload
+          #fubauto
+          mode="basic"
+          name="demo"
+          accept="image/*"
+          maxFileSize="2000000"
+          customUpload="true"
+          (uploadHandler)="onImageUpload($event)"
+          [auto]="true"
+          chooseLabel="Upload Proof"
+          class="mr-2"
+        ></p-fileUpload>
+        <img
+          *ngIf="imageDisplay"
+          [width]="150"
+          [src]="imageDisplay"
+          alt="Proof"
+        />
+      </div>
+      <div class="surface-border border-top-3 opacity-50 mb-3 col-12"></div>
+      <div class="col-12 flex justify-content-center">
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Submit"
+          class="p-button-raised p-button-success w-auto"
+          *ngIf="!isLoading"
+          (click)="onFormSubmitted()"
+          [disabled]="vacForm.invalid"
+        ></button>
+        <p-progressSpinner
+          [style]="{ width: '50px', height: '50px' }"
+          styleClass="custom-spinner"
+          strokeWidth="8"
+          fill="var(--surface-ground)"
+          animationDuration=".5s"
+          *ngIf="isLoading"
+        ></p-progressSpinner>
+      </div>
+    </form>
+  </div>
+</section>

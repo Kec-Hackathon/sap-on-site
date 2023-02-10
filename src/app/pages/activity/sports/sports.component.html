@@ -1,0 +1,142 @@
+<section class="mt-8">
+  <div class="surface-card py-2 px-4">
+    <form [formGroup]="sportsForm" class="grid formgrid p-fluid">
+      <div class="field mb-4 col-6">
+        <label for="eventName" class="font-medium text-900">Event Name</label>
+        <input
+          id="eventName"
+          type="text"
+          formControlName="eventName"
+          pinputtext
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="eventVenue" class="font-medium text-900">
+          Event Venue (With Institution Location)
+        </label>
+        <input
+          id="eventVenue"
+          type="text"
+          formControlName="eventVenue"
+          pinputtext
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="sportName" class="font-medium text-900"> Sport Name </label>
+        <input
+          id="sportName"
+          formControlName="sportName"
+          type="text"
+          pinputtext
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="level" class="font-medium text-900">
+          Level of the Event
+        </label>
+        <p-dropdown
+          [options]="availaleLevelWithPrize"
+          formControlName="eventLevel"
+          placeholder="Select the event level"
+          [showClear]="true"
+          id="level"
+          optionLabel="label"
+          (onChange)="onLevelChange($event)"
+        ></p-dropdown>
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="position" class="font-medium text-900">
+          Position Obtained
+        </label>
+        <p-dropdown
+          [options]="placedPosition"
+          [showClear]="true"
+          formControlName="position"
+          placeholder="Select your position"
+          id="position"
+        ></p-dropdown>
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="eventDateRange" class="font-medium text-900">Event Dates</label>
+        <p-calendar
+          dateFormat="dd-mm-yy"
+          id="eventDateRange"
+          selectionMode="range"
+          [readonlyInput]="true"
+          inputId="range"
+          formControlName="eventDateRange"
+        ></p-calendar>
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="prizeAmount" class="font-medium text-900">
+          Cash Award
+        </label>
+        <p-inputNumber
+          mode="currency"
+          inputId="currency-india"
+          currency="INR"
+          currencyDisplay="code"
+          locale="en-IN"
+          id="prizeAmount"
+          formControlName="prizeAmount"
+        >
+        </p-inputNumber>
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="mark" class="font-medium text-900">Mark</label>
+        <input
+          id="mark"
+          type="number"
+          pinputtext
+          class="p-inputtext p-component p-element"
+          readonly
+          formControlName="mark"
+        />
+      </div>
+      <div class="field my-4 flex col-12">
+        <p-fileUpload
+          #fubauto
+          mode="basic"
+          name="demo"
+          accept="image/*"
+          maxFileSize="2000000"
+          customUpload="true"
+          (uploadHandler)="onImageUpload($event)"
+          [auto]="true"
+          chooseLabel="Upload Proof"
+          class="mr-2"
+        ></p-fileUpload>
+        <img
+          *ngIf="imageDisplay"
+          [width]="150"
+          [src]="imageDisplay"
+          alt="Proof"
+        /> 
+      </div>
+      <div class="surface-border border-top-3 opacity-50 mb-3 col-12"></div>
+      <div class="col-12 flex justify-content-center">
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Submit"
+          class="p-button-raised p-button-success w-auto"
+          *ngIf="!isLoading"
+          (click)="onFormSumitted()"
+          [disabled]="sportsForm.invalid"
+        ></button>
+        <p-progressSpinner
+          [style]="{ width: '50px', height: '50px' }"
+          styleClass="custom-spinner"
+          strokeWidth="8"
+          fill="var(--surface-ground)"
+          animationDuration=".5s"
+          *ngIf="isLoading"
+        ></p-progressSpinner>
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,116 @@
+<section class="mt-8">
+  <div class="surface-card p-4">
+    <form [formGroup]="placementForm" class="grid formgrid p-fluid">
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="companyName" class="font-medium text-900">
+          Company Name
+        </label>
+        <input
+          id="companyName"
+          formControlName="companyName"
+          type="text"
+          pinputtext
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="companyVenue" class="font-medium text-900">
+          Company Location
+        </label>
+        <input
+          id="companyVenue"
+          type="text"
+          pinputtext
+          formControlName="companyLocation"
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="placedType" class="font-medium text-900">
+          Placed Type
+        </label>
+        <p-dropdown
+          placeholder="Select the type of placement"
+          formControlName="placedType"
+          [options]="placedType"
+          [showClear]="true"
+          id="placedType"
+          (onChange)="onPositionChange($event)"
+        ></p-dropdown>
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="placedDate" class="font-medium text-900">Placed Date</label>
+        <p-calendar
+          dateFormat="dd-mm-yy"
+          id="placedDate"
+          formControlName="placedDate"
+          inputId="dateformat"
+        ></p-calendar>
+      </div>
+      <div class="field mb-4 col-12 md:col-6" *ngIf="notPlaced">
+        <label for="roundsShortListed" class="font-medium text-900">
+          Number of rounds cleared
+        </label>
+        <p-inputNumber
+          formControlName="roundsShortListed"
+          id="roundsShortListed"
+          inputId="minmax"
+          mode="decimal"
+        >
+        </p-inputNumber>
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="mark" class="font-medium text-900"> Mark </label>
+        <input
+          id="mark"
+          formControlName="mark"
+          type="text"
+          pinputtext
+          class="p-inputtext p-component p-element"
+          readonly
+        />
+      </div>
+      <div class="field my-4 flex col-12">
+        <p-fileUpload
+          #fubauto
+          mode="basic"
+          name="demo"
+          accept="image/*"
+          maxFileSize="2000000"
+          customUpload="true"
+          (uploadHandler)="onImageUpload($event)"
+          [auto]="true"
+          chooseLabel="Upload Proof"
+          class="mr-2"
+        ></p-fileUpload>
+        <img
+          *ngIf="imageDisplay"
+          [width]="150"
+          [src]="imageDisplay"
+          alt="Proof"
+        />
+      </div>
+      <div class="surface-border border-top-3 opacity-50 mb-3 col-12"></div>
+      <div class="col-12 flex justify-content-center">
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Submit"
+          class="p-button-raised p-button-success w-auto"
+          *ngIf="!isLoading"
+          (click)="onFormSubmitted()"
+          [disabled]="placementForm.invalid"
+        ></button>
+        <p-progressSpinner
+          [style]="{ width: '50px', height: '50px' }"
+          styleClass="custom-spinner"
+          strokeWidth="8"
+          fill="var(--surface-ground)"
+          animationDuration=".5s"
+          *ngIf="isLoading"
+        ></p-progressSpinner>
+      </div>
+    </form>
+  </div>
+</section>

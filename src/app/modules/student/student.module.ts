@@ -5,6 +5,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import {AvatarModule} from 'primeng/avatar';
+import {CardModule} from 'primeng/card';
+import {SidebarModule} from 'primeng/sidebar';
+import {InputSwitchModule} from 'primeng/inputswitch';
 
 const routes: Routes = [
   {
@@ -22,7 +25,10 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     HttpClientModule,
-    AvatarModule
+    AvatarModule,
+    CardModule,
+    SidebarModule,
+    InputSwitchModule
   ]
 })
 export class StudentModule { }

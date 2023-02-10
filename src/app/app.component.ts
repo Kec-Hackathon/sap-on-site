@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sap-on-site';
+
+  constructor() {
+     const token = localStorage.getItem('token');
+  }
 }

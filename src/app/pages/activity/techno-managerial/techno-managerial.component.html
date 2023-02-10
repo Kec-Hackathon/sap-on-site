@@ -1,0 +1,136 @@
+<section class="mt-8">
+  <div class="surface-card py-2 px-4">
+    <form [formGroup]="technoForm" class="grid formgrid p-fluid">
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="eventName" class="font-medium text-900"> Event Name </label>
+        <input
+          id="eventName"
+          type="text"
+          formControlName="eventName"
+          pinputtext
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="eventVenue" class="font-medium text-900">
+          Event Venue(With Institution Location)
+        </label>
+        <input
+          id="eventVenue"
+          type="text"
+          pinputtext
+          formControlName="eventVenue"
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="mode" class="font-medium text-900">
+          Inside / Outside KEC
+        </label>
+        <p-dropdown
+          formControlName="type"
+          [options]="type"
+          [showClear]="true"
+          id="mode"
+          placeholder="Select event type"
+        ></p-dropdown>
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="title" class="font-medium text-900">Title</label>
+        <input
+          id="title"
+          formControlName="title"
+          type="text"
+          pinputtext
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="eventLevel" class="font-medium text-900">Event Level</label>
+        <p-dropdown
+          [options]="availableLevels"
+          placeholder="Select event level"
+          [showClear]="true"
+          id="eventLevel"
+          (onChange)="onLevelChange($event)"
+        ></p-dropdown>
+      </div>
+
+      <div class="field mb-4 col-12 md:col-6" *ngIf="isPrizeWon">
+        <label for="eventVenue" class="font-medium text-900">
+          Cash Award (If Won)
+        </label>
+        <p-inputNumber
+          mode="currency"
+          inputId="currency-india"
+          currency="INR"
+          currencyDisplay="code"
+          locale="en-IN"
+          formControlName="prizeAmount"
+        >
+        </p-inputNumber>
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="eventDate" class="font-medium text-900">Event Date</label>
+        <p-calendar
+          dateFormat="dd-mm-yy"
+          id="eventDate"
+          inputId="dateformat"
+          formControlName="eventDate"
+        ></p-calendar>
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="mark" class="font-medium text-900"> Mark </label>
+        <input
+          id="mark"
+          formControlName="mark"
+          type="text"
+          pinputtext
+          class="p-inputtext p-component p-element"
+          readonly
+        />
+      </div>
+      <div class="field my-4 flex col-12">
+        <p-fileUpload
+          #fubauto
+          mode="basic"
+          name="demo"
+          accept="image/*"
+          maxFileSize="2000000"
+          customUpload="true"
+          (uploadHandler)="onImageUpload($event)"
+          [auto]="true"
+          chooseLabel="Upload Proof"
+          class="mr-2"
+        ></p-fileUpload>
+        <img
+          *ngIf="imageDisplay"
+          [width]="150"
+          [src]="imageDisplay"
+          alt="Proof"
+        />
+      </div>
+      <div class="surface-border border-top-3 opacity-50 mb-3 col-12"></div>
+      <div class="col-12 flex justify-content-center">
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Submit"
+          class="p-button-raised p-button-success w-auto"
+          *ngIf="!isLoading"
+          (click)="onFormSubmitted()"
+          [disabled]="technoForm.invalid"
+        ></button>
+        <p-progressSpinner
+          [style]="{ width: '50px', height: '50px' }"
+          styleClass="custom-spinner"
+          strokeWidth="8"
+          fill="var(--surface-ground)"
+          animationDuration=".5s"
+          *ngIf="isLoading"
+        ></p-progressSpinner>
+      </div>
+    </form>
+  </div>
+</section>

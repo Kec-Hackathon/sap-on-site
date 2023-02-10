@@ -1,0 +1,76 @@
+<p-toast></p-toast>
+<div class="min-h-screen flex flex-column surface-ground">
+  <div class="surface-overlay py-1 px-6 text-center relative lg:static">
+    <h2 class="mr-0 lg:mr-6 font-semibold text-xl md:text-3xl">
+      Upload Your Activity Here!
+    </h2>
+  </div>
+  <div class="flex relative lg:static p-5 flex-auto">
+    <div
+      class="surface-card lg:block flex-shrink-0 absolute lg:static left-0 top-0 z-1 select-none shadow-2 hidden"
+      style="width: 280px; border-radius: 12px"
+    >
+      <div class="flex flex-column h-full">
+        <div class="overflow-y-auto">
+          <ul class="list-none px-3 pb-3 pt-0 m-0">
+            <li>
+              <div
+                class="p-3 flex align-items-center justify-content-between text-600"
+              >
+                <span class="font-medium text-sm text-900 mt-2">
+                  ACTIVITY LIST
+                </span>
+              </div>
+              <ul
+                class="list-none p-0 m-0 overflow-hidden fadein animation-duration-500"
+              >
+                <li *ngFor="let activity of activities">
+                  <a
+                    pripple
+                    [routerLink]="activity.route"
+                    [queryParams]="{ userId: userId }"
+                    routerLinkActive="text-purple-600 border-right-2 border-purple-500 transition-colors transition-duration-150"
+                    class="p-ripple p-element flex align-items-center cursor-pointer p-2 text-700 hover:surface-100 transition-duration-150 transition-colors border-right-2 border-transparent"
+                  >
+                    <i class="pi mr-2" [ngClass]="'pi-' + activity.icon"></i>
+                    <span class="font-medium">{{ activity.label }}</span>
+                    <span
+                      class="p-ink"
+                      style="
+                        height: 248px;
+                        width: 248px;
+                        top: -119px;
+                        left: -6px;
+                      "
+                    ></span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="mt-auto border-top-1 surface-border text-center">
+          <a
+            pripple
+            (click)="location.back()"
+            class="p-ripple p-element cursor-pointer p-3 inline-flex align-items-center justify-content-center text-pink-600 text-600 transition-colors transition-duration-150"
+          >
+            <i class="pi pi-chevron-circle-left mr-2"></i>
+            <span class="font-medium">Go Back</span>
+            <span class="p-ink"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-column flex-auto">
+      <div
+        class="border-2 border-dashed surface-border border-round surface-section flex-auto lg:ml-5 hidden lg:block"
+      >
+        <router-outlet></router-outlet>
+      </div>
+      <h2 class="block lg:hidden mx-3 mt-2 text-center">
+        Please use larger screen to upload activites!
+      </h2>
+    </div>
+  </div>
+</div>

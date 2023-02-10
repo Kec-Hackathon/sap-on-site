@@ -1,0 +1,216 @@
+<section class="mt-1">
+  <div class="surface-card px-2 py-1">
+    <form [formGroup]="projectToPaperForm" class="grid formgrid p-fluid">
+      <div class="field mb-4 col-12 md:col-4">
+        <label for="projectTitle" class="font-medium text-900">
+          Project Title
+        </label>
+        <input
+          id="projectTitle"
+          type="text"
+          formControlName="projectTitle"
+          pinputtext
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-4">
+        <label for="projectGuide" class="font-medium text-900">
+          Project Guide
+        </label>
+        <input
+          id="projectGuide"
+          formControlName="projectGuide"
+          type="text"
+          pinputtext
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-4">
+        <label for="projectMode" class="font-medium text-900">
+          Project Mode with academic year
+        </label>
+        <input
+          id="projectMode"
+          type="text"
+          formControlName="projectMode"
+          pinputtext
+          placeholder="Eg: Mini Project 2021-22"
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-4">
+        <label for="publishedIn" class="font-medium text-900">
+          Published In
+        </label>
+        <p-dropdown
+          placeholder="Published In"
+          [options]="availablePublishment"
+          [showClear]="true"
+          id="publishedIn"
+          formControlName="publishedIn"
+        ></p-dropdown>
+      </div>
+      <div class="field mb-4 col-12 md:col-4">
+        <label for="projectSubmittedDate" class="font-medium text-900">
+          Project Submitted Date
+        </label>
+        <p-calendar
+          dateFormat="dd-mm-yy"
+          id="projectSubmittedDate"
+          formControlName="projectSubmittedDate"
+          inputId="dateformat"
+        ></p-calendar>
+      </div>
+      <div class="field mb-4 col-12 md:col-4">
+        <label for="projectPublishedDate" class="font-medium text-900">
+          Project Published Date
+        </label>
+        <p-calendar
+          dateFormat="dd-mm-yy"
+          id="projectPublishedDate"
+          formControlName="projectPublishedDate"
+          inputId="dateformat"
+        ></p-calendar>
+      </div>
+      <div class="field mb-4 col-12 md:col-4">
+        <label for="title" class="font-medium text-900">
+          Title of the Paper/Patent
+        </label>
+        <input
+          id="title"
+          type="text"
+          pinputtext
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-4">
+        <label for="journalName" class="font-medium text-900">
+          Name of Journal/Conference
+        </label>
+        <input
+          id="journalName"
+          formControlName="journalName"
+          type="text"
+          pinputtext
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-4">
+        <label for="authors" class="font-medium text-900">
+          Name of author and co-authors
+        </label>
+        <input
+          id="authors"
+          formControlName="authors"
+          type="text"
+          pinputtext
+          placeholder="Eg: Sai M, Parisheth M, .."
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-4">
+        <label for="journalDetail" class="font-medium text-900">
+          Journal Detail
+        </label>
+        <input
+          id="journalDetail"
+          formControlName="journalDetail"
+          type="text"
+          pinputtext
+          placeholder="Eg: Vol :3, issue:1, page: 99-102 March 2021"
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-4">
+        <label for="issnNumber" class="font-medium text-900">
+          Journal ISSN Number
+        </label>
+        <input
+          id="issnNumber"
+          formControlName="issnNumber"
+          type="text"
+          pinputtext
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-4">
+        <label for="doiNumber" class="font-medium text-900">
+          Digital Object Idetifier (DOI) Number
+        </label>
+        <input
+          id="doiNumber"
+          formControlName="doiNumber"
+          type="text"
+          pinputtext
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-4">
+        <label for="convertionStage" class="font-medium text-900">
+          Project to Paper Convertion stage
+        </label>
+        <p-dropdown
+          [options]="availableType"
+          placeholder="Select the stage"
+          [showClear]="true"
+          optionLabel="label"
+          id="convertionStage"
+          formControlName="convertionStage"
+          (onChange)="onTypeChange($event)"
+        ></p-dropdown>
+      </div>
+      <div class="field mb-4 col-12 md:col-4">
+        <label for="mark" class="font-medium text-900">Mark</label>
+        <input
+          id="mark"
+          formControlName="mark"
+          type="number"
+          pinputtext
+          class="p-inputtext p-component p-element"
+          readonly
+        />
+      </div>
+      <div class="field my-4 flex col-12">
+        <p-fileUpload
+          #fubauto
+          mode="basic"
+          name="demo"
+          accept="image/*"
+          maxFileSize="2000000"
+          customUpload="true"
+          (uploadHandler)="onImageUpload($event)"
+          [auto]="true"
+          chooseLabel="Upload Proof"
+          class="mr-2"
+        ></p-fileUpload>
+        <img
+          *ngIf="imageDisplay"
+          [width]="150"
+          [src]="imageDisplay"
+          alt="Proof"
+        /> 
+      </div>
+      <div class="surface-border border-top-3 opacity-50 mb-3 col-12"></div>
+      <div class="col-12 flex justify-content-center">
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Submit"
+          class="p-button-raised p-button-success w-auto"
+          *ngIf="!isLoading"
+          (click)="onFormSubmitted()"
+          [disabled]="projectToPaperForm.invalid"
+        ></button>
+        <p-progressSpinner
+          [style]="{ width: '50px', height: '50px' }"
+          styleClass="custom-spinner"
+          strokeWidth="8"
+          fill="var(--surface-ground)"
+          animationDuration=".5s"
+          *ngIf="isLoading"
+        ></p-progressSpinner>
+      </div>
+    </form>
+  </div>
+</section>
