@@ -1,13 +1,7 @@
 <p-toast></p-toast>
 <section>
     <div class="card">
-        <p-table styleClass="datatable-gridlines" [value]="studentActivityMarks" responsiveLayout="scroll" [scrollable]="true" scrollHeight="450px">
-            <ng-template pTemplate="caption">
-                <div class="flex justify-content-end">
-                    <button pButton pRipple type="button" icon="pi pi-cloud-download" label="Excel"
-                        pTooltip="Download as Excel" class="p-button-help"></button>
-                </div>
-            </ng-template>
+        <p-table [value]="studentActivityMarks" styleClass="p-datatable-gridlines  p-datatable-sm" responsiveLayout="scroll" [scrollable]="true" scrollHeight="350px">
             <ng-template pTemplate="header" let-columns>
                 <tr>
                     <th pSortableColumn="event">

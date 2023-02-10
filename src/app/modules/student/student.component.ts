@@ -9,22 +9,27 @@ import { StudentService } from './service/student.service';
   styleUrls: ['./student.component.scss']
 })
 export class StudentComponent implements OnInit {
-  userDetail: any
+  userDetail: any;
   greet!: string;
   hrs = new Date().getHours();
   showSidebar: boolean = false;
-  pointObtained!:number;
-  pointWanted!:number;
-  mark!:number;
+  markDetail: any;
+  mark!: number;
+  showMarkTable = false;
 
   constructor(private route: ActivatedRoute, private studentService: StudentService, @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
     this.calculateGreet();
-    this.route.params.subscribe((params)=>{
-      this.studentService.getUserDetailById(params['id']).subscribe((res)=>{
-        if(res.user) {
+    this.route.params.subscribe((params) => {
+      this.studentService.getUserDetailById(params['id']).subscribe((res) => {
+        if (res.user) {
           this.userDetail = res.user;
+        }
+      })
+      this.studentService.getMarkById(params['id']).subscribe((res) => {
+        if (res.mark) {
+          this.markDetail = res.mark;
         }
       })
     })
@@ -40,14 +45,14 @@ export class StudentComponent implements OnInit {
   }
 
   onProfileClicked() {
-    this.showSidebar = true;    
+    this.showSidebar = true;
   }
 
-  onThemeChange(event: any){
+  onThemeChange(event: any) {
     let themeLink = this.document.getElementById('app-theme') as HTMLLinkElement;
 
-    if(event.checked) {
-        themeLink.href = 'arya-dark-blue.css';
+    if (event.checked) {
+      themeLink.href = 'arya-dark-blue.css';
     } else {
       themeLink.href = 'saga-light-blue.css';
     }

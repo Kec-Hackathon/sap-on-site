@@ -4,7 +4,7 @@ section {
 
     .user_detail {
         width: 100%;
-        height: min(300px, 30vh);
+        height: min(250px, 25vh);
         background-image: url(https://source.unsplash.com/random/1400x500?city,nature,forest);
         background-repeat: no-repeat;
         background-size: 100%;
@@ -25,11 +25,19 @@ section {
         .cards {
             display: flex;
             justify-content: space-evenly;
+            flex-wrap: wrap;
+            gap: 0.8rem 0.5rem;
+            margin: 0.85rem;
 
             .p-card {
                 width: 30rem;
-                height: 5rem;
+                height: 3rem;
             }
+        }
+
+        .upload-activity {
+            width: 90%;
+            margin: 1rem 0;
         }
     }
 }

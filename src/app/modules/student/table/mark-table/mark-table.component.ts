@@ -1,24 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AdminService } from '../../admin.service';
+import { StudentService } from '../../service/student.service';
 
 @Component({
   selector: 'app-mark-table',
   templateUrl: './mark-table.component.html',
   styleUrls: ['./mark-table.component.scss']
 })
-export class MarkTableComponent {
+export class MarkTableComponent implements OnInit {
   studentActivityMarks = [];
 
-  constructor(
-    private adminService: AdminService,
-    private route: ActivatedRoute
-  ) { }
+  constructor(private studentService: StudentService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((res) => {
-      if (res['id']) {
-        this.adminService.getMarkByUserId(res['id']).subscribe((res) => {
+    this.route.params.subscribe((params) => {
+      if (params['id']) {
+        this.studentService.getMarkById(params['id']).subscribe((res) => {
           Object.keys(res.mark).forEach((key) => {
             if (
               key == '_id' ||
@@ -35,6 +32,6 @@ export class MarkTableComponent {
           });
         });
       }
-    });
+    })
   }
 }
