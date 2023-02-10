@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { LocalStorageService } from 'src/app/core/auth/local-storage.service';
 import { LoginService } from './login.service';
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   loading: boolean = false;
   formSubmitAttempt: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private messageService: MessageService, private loginService: LoginService, private localStorage: LocalStorageService) { }
+  constructor(private formBuilder: FormBuilder, private messageService: MessageService, private loginService: LoginService, private localStorage: LocalStorageService, private router: Router) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -30,9 +31,9 @@ export class LoginComponent implements OnInit {
       this.loginService.loginUser(this.form.value).subscribe((res) => {
         if (res.user) {
           if (this.form.value.rememberMe[0]) {
-            this.localStorage.setLocalStorage('token', res.token)
+            this.localStorage.setLocalStorage('token', res.token);
           }
-          console.log(res);
+          this.router.navigate([`s/${res.user}`]);
         } else {
           this.messageService.add({
             severity: 'error',

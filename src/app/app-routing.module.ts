@@ -11,6 +11,14 @@ const routes: Routes = [
 		loadChildren: () => import("./pages/signup/signup.module").then((m) => m.SignupModule),
   },
   {
+    path: 's',
+		loadChildren: () => import("./modules/student/student.module").then((m) => m.StudentModule),
+  },
+  {
+    path: 'a',
+		loadChildren: () => import("./modules/admin/admin.module").then((m) => m.AdminModule),
+  },
+  {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
