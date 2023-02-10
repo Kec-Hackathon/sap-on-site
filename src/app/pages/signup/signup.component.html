@@ -1,40 +1,42 @@
 <section>
   <div class="background">
     <img
-      src="../../../assets/img/logo-2.gif"
+      src="/assets/img/logo-2.gif"
       alt="Kongu Logo"
       width="400"
       height="400"
     />
   </div>
   <div class="signup">
-    <h2>Hello !</h2>
+    <h2>Please Sign up for your account !</h2>
     <form [formGroup]="form">
       <div *ngFor="let item of signup">
-        <ng-container class="form-group" [ngSwitch]="'input'">
-          <div *ngSwitchCase="'input'">
-            <label [for]="item.label">{{ item.label }}</label>
-            <input
-              [type]="item.type"
-              [id]="item.id"
-              pInputText
-              [placeholder]="item.placeholder"
-              [formControlName]="item.id"
-            />
-          </div>
-          <div *ngSwitchCase="'select'">
-            <p-dropdown
-              [options]="item.options"
-              [formControlName]="item.id"
-              [placeholder]="item.placeholder"
-              [optionLabel]="item.id"
-              [showClear]="true"
-            ></p-dropdown>
-          </div>
-        </ng-container>
+        <div class="form-group" *ngIf="!item.isDropdown">
+          <label [for]="item.label">{{ item.label }}</label>
+          <input
+            [type]="item.type"
+            [id]="item.id"
+            pInputText
+            [placeholder]="item.placeholder"
+            [formControlName]="item.id"
+          />
+        </div>
+        <div *ngIf="item.isDropdown">
+          <label [for]="item.label" style="display: block">{{
+            item.label
+          }}</label>
+          <p-dropdown
+            [options]="item.options"
+            [formControlName]="item.id"
+            [placeholder]="item.placeholder"
+            [optionLabel]="item.id"
+            [showClear]="true"
+            styleClass="dropdown"
+          ></p-dropdown>
+        </div>
       </div>
-      <div >
-        <label for="profile" class="label">Profile</label>
+      <div class="profile">
+        <label for="profile" >Profile</label>
         <p-fileUpload
           #fubauto
           mode="basic"
@@ -43,7 +45,7 @@
           accept="image/*"
           (onUpload)="onBasicUploadAuto($event)"
           [auto]="true"
-          chooseLabel="Browse"
+          chooseLabel="Upload Profile"
         ></p-fileUpload>
       </div>
     </form>
