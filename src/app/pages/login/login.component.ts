@@ -37,7 +37,11 @@ export class LoginComponent implements OnInit {
             this.localStorage.setLocalStorage('token', res.token);
           }
           this.loading = false;
-          this.router.navigate([`s/${res.user}`]);
+          if(res.user.user_type === 'Student') {
+            this.router.navigate([`s/${res.user._id}`]);
+          } else if(res.user.user_type === 'Mentor') {
+            this.router.navigate([`a/${res.user._id}`]);
+          }
         } else {
           this.loading =  false
           this.messageService.add({

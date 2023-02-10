@@ -10,19 +10,21 @@ import { ActivityTableComponent } from './view-student/activity-table/activity-t
 import { MarkTableComponent } from './view-student/mark-table/mark-table.component';
 import { ShowMarksComponent } from './show-marks/show-marks.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { AssignMentorComponent } from './assign-mentor/assign-mentor.component';
 
 const routes: Routes = [
   {
     path: '', children: [
       { path: ':id', component: AdminComponent },
       { path: ':id/s', component: ViewStudentComponent },
+      { path: ':id/assign-mentor', component: AssignMentorComponent },
       { path: ':id/show-all-mark', component: ShowMarksComponent },
     ]
   },
 ];
 
 @NgModule({
-  declarations: [AdminComponent, ViewStudentComponent, ActivityTableComponent, MarkTableComponent, ShowMarksComponent],
+  declarations: [AdminComponent, ViewStudentComponent, ActivityTableComponent, MarkTableComponent, ShowMarksComponent, AssignMentorComponent],
   imports: [
     CommonModule,
     RouterModule,

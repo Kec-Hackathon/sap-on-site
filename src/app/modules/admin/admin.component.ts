@@ -78,32 +78,36 @@ export class AdminComponent implements OnInit {
     if (this.addMentorForm?.invalid) return;
 
     this.isLoading = true;
+
     const mentor = {
       name: this.addMentorForm?.get('name')?.value,
-      department: this.addMentorForm?.get('department')?.value,
+      department: this.mentorDetail.department,
       email: this.addMentorForm?.get('email')?.value,
       password: this.addMentorForm?.get('password')?.value,
-      isAdmin: this.addMentorForm?.get('isAdmin')?.value,
-      addedAdmin: this.id,
+      is_admin: this.addMentorForm?.get('isAdmin')?.value,
+      user_type: "Mentor",
+      roll_no: Date.now()
     };
 
-    // this.authService.addMentor(mentor).subscribe((res) => {
-    //   this.isLoading = false;
-    //   this.openAddAdminDialog = false;
-    //   if (res.user != null) {
-    //     return this.messageService.add({
-    //       severity: 'success',
-    //       summary: 'Success',
-    //       detail: `Admin '${res.user.name}' added successfully!`,
-    //     });
-    //   } else {
-    //     return this.messageService.add({
-    //       severity: 'error',
-    //       summary: 'Error',
-    //       detail: res.message,
-    //     });
-    //   }
-    // });
+    this.adminService.addNewMentor(mentor).subscribe((res) => {
+      console.log(res);
+      
+      this.isLoading = false;
+      this.openAddAdminDialog = false;
+      if (res.user != null) {
+        return this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: `Admin '${res.user.name}' added successfully!`,
+        });
+      } else {
+        return this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: res.message,
+        });
+      }
+    });
   }
 
   checkOldPassForm(form: NgForm) {
@@ -154,7 +158,6 @@ export class AdminComponent implements OnInit {
   private _initForm() {
     this.addMentorForm = this.formBuilder.group({
       name: ['', Validators.required],
-      department: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       isAdmin: [false],

@@ -28,4 +28,8 @@ export class AdminService {
   getActivityByDepartment(department: string): any {
     return this.http.get(`${this.BACKEND_URL}/activity/department/${department}`)
   }
+
+  addNewMentor(mentorData: any): any {
+    return this.http.post(`${this.BACKEND_URL}/user/signup`, mentorData)
+  }
 }

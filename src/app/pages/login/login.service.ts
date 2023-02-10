@@ -14,7 +14,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  loginUser(userLogin: UserLogin): Observable<{ user: string, token: string, message: string }> {
-    return this.http.post<{ user: string, token: string, message: string }>(`${this.BACKEND_URL}/user/login`, userLogin)
+  loginUser(userLogin: UserLogin): Observable<{ user: any, token: string, message: string }> {
+    return this.http.post<{ user: any, token: string, message: string }>(`${this.BACKEND_URL}/user/login`, userLogin)
   }
 }
