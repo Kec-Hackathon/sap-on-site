@@ -41,12 +41,12 @@
         <div class="flex flex-wrap ">
           <div class="col-12 md:col-4 xl:col-3 p-3 fadeindown animation-duration-500 flex student-card"
             *ngFor="let student of availableStudents">
-            <p-card [header]="student.name" [subheader]="student.rollno" [style]="{
+            <p-card [header]="student.name" [subheader]="student.roll_no" [style]="{
                 'width': 'clamp(300px,20%,30%)',
-                'margin-bottom': '2em',
+                'margin-bottom': '1rem',
                 'cursor': 'pointer'
-              }" (click)="onCardClicked(student.id)">
-              <p>{{ student.mail }}</p>
+              }" (click)="onCardClicked(student._id)">
+              <p>{{ student.email }}</p>
             </p-card>
             <!-- <img src="/assets/img/logo-2.gif" alt="" class="student-profile" /> -->
           </div>

@@ -28,11 +28,7 @@ export interface User {
 export class AdminComponent implements OnInit {
   id: string = '';
   mentorDetail: User;
-  availableStudents = [
-    { name: 'Monesh MS', rollno: '19EIR056', mail: 'monesh@kongu.edu', year: '4th year', id: '63e5d936d671f89847e32cd4' },
-    { name: 'Paveen Kumar D', rollno: '19EIR056', mail: 'paveen@kongu.edu', year: '4th year', id: '63e62f332fa0c4ea2081ef5b' },
-    { name: 'Sree Vadhani M', rollno: '19EIR086', mail: 'sree@kongu.edu', year: '4th year', id: '234' },
-  ];
+  availableStudents = [];
   openAddAdminDialog: boolean = false;
   openChangePasswordDialog: boolean = false;
   openNewPasswordDialog: boolean = false;
@@ -57,7 +53,9 @@ export class AdminComponent implements OnInit {
           if (res.user) {
             this.mentorDetail = res.user;
             this.adminService.getMentorStudentList(params['id']).subscribe((users) => {
-              console.log(users);
+              if (users.usersList.length > 0) {
+                this.availableStudents = users.usersList;
+              }
             })
           }
         })
@@ -91,7 +89,7 @@ export class AdminComponent implements OnInit {
 
     this.adminService.addNewMentor(mentor).subscribe((res) => {
       console.log(res);
-      
+
       this.isLoading = false;
       this.openAddAdminDialog = false;
       if (res.user != null) {
