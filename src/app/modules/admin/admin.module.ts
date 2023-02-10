@@ -1,34 +1,37 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
-import { InputSwitchModule } from 'primeng/inputswitch';
-import { ToastModule } from 'primeng/toast';
 import { RouterModule, Routes } from '@angular/router';
-import { DialogModule } from 'primeng/dialog';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MessageService } from 'primeng/api';
-import {CardModule} from 'primeng/card';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ViewStudentComponent } from './view-student/view-student.component';
+import { PrimengModule } from 'src/app/primeng.module';
+import { ActivityTableComponent } from './view-student/activity-table/activity-table.component';
+import { MarkTableComponent } from './view-student/mark-table/mark-table.component';
+import { ShowMarksComponent } from './show-marks/show-marks.component';
+import { AgGridModule } from 'ag-grid-angular';
+
 const routes: Routes = [
-  { path: '', children: [{ path: ':id', component: AdminComponent }] },
+  {
+    path: '', children: [
+      { path: ':id', component: AdminComponent },
+      { path: ':id/s', component: ViewStudentComponent },
+      { path: ':id/show-all-mark', component: ShowMarksComponent },
+    ]
+  },
 ];
 
 @NgModule({
-  declarations: [AdminComponent],
+  declarations: [AdminComponent, ViewStudentComponent, ActivityTableComponent, MarkTableComponent, ShowMarksComponent],
   imports: [
     CommonModule,
-    InputSwitchModule,
-    ToastModule,
     RouterModule,
-    DialogModule,
-    ProgressSpinnerModule,
-    DropdownModule,
     ReactiveFormsModule,
     FormsModule,
-    CardModule,
     RouterModule.forChild(routes),
+    PrimengModule,
+    AgGridModule
   ],
-  providers:[MessageService]
+  providers: [MessageService, ConfirmationService]
 })
-export class AdminModule {}
+export class AdminModule { }

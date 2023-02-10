@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DepartmentData } from './department.data';
+import { DepartmentData } from '../../core/data/department.data';
 import { MessageService } from 'primeng/api';
-import { AuthService } from 'src/app/core/auth/auth.service';
 import { MentorService } from 'src/app/core/auth/mentor.service';
+import { AdminService } from './admin.service';
+
 export interface User {
   name?: string;
   email?: string;
@@ -18,25 +19,22 @@ export interface User {
   type?: 'student' | 'mentor';
   is_admin?: boolean;
 }
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-  id: string='';
-  mentorDetail: User = {
-    name: 'Abc',
-    email: 'abc@gmail.com',
-    department: 'EIE',
-  };
+  id: string = '';
+  mentorDetail: User;
   availableStudents = [
-    { name: 'Monesh MS', rollno: '!9EIR056', mail:'monesh@kongu.edu',year: '4th year', id: '123' },
-    { name: 'Paveen Kumar D', rollno: '19EIR056',mail:'paveen@kongu.edu', year: '4th year', id: '123' },
-    { name: 'Sree Vadhani M', rollno: '19EIR086', mail:'sree@kongu.edu',year: '4th year', id: '234' },
+    { name: 'Monesh MS', rollno: '19EIR056', mail: 'monesh@kongu.edu', year: '4th year', id: '63e5d936d671f89847e32cd4' },
+    { name: 'Paveen Kumar D', rollno: '19EIR056', mail: 'paveen@kongu.edu', year: '4th year', id: '63e62f332fa0c4ea2081ef5b' },
+    { name: 'Sree Vadhani M', rollno: '19EIR086', mail: 'sree@kongu.edu', year: '4th year', id: '234' },
   ];
   openAddAdminDialog: boolean = false;
-  openChangePasswordDialog:boolean = false;
+  openChangePasswordDialog: boolean = false;
   openNewPasswordDialog: boolean = false;
   addMentorForm!: FormGroup;
   isLoading: boolean = false;
@@ -47,21 +45,33 @@ export class AdminComponent implements OnInit {
     private route: ActivatedRoute,
     private messageService: MessageService,
     private formBuilder: FormBuilder,
-    private authService: AuthService,
+    private adminService: AdminService,
     private mentorService: MentorService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       if (params['id']) {
         this.id = params['id'];
+        this.adminService.getUserDetailById(params['id']).subscribe((res) => {
+          if (res.user) {
+            this.mentorDetail = res.user;
+            this.adminService.getMentorStudentList(params['id']).subscribe((users) => {
+              console.log(users);
+            })
+          }
+        })
       }
     });
     this._initForm();
   }
 
-  onCardClicked(id:string) {
-    this.router.navigate([`m/${this.id}/s/${id}`]);
+  onCardClicked(id: string) {
+    this.router.navigate([`a/${this.id}/s`], { queryParams: { 'student': id } });
+  }
+
+  showDepartmentMarks() {
+    this.router.navigate([`a/${this.id}/show-all-mark`], { queryParams: { department: this.mentorDetail.department } })
   }
 
   onSubmit() {
@@ -77,23 +87,23 @@ export class AdminComponent implements OnInit {
       addedAdmin: this.id,
     };
 
-    this.authService.addMentor(mentor).subscribe((res) => {
-      this.isLoading = false;
-      this.openAddAdminDialog = false;
-      if (res.user != null) {
-        return this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: `Admin '${res.user.name}' added successfully!`,
-        });
-      } else {
-        return this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: res.message,
-        });
-      }
-    });
+    // this.authService.addMentor(mentor).subscribe((res) => {
+    //   this.isLoading = false;
+    //   this.openAddAdminDialog = false;
+    //   if (res.user != null) {
+    //     return this.messageService.add({
+    //       severity: 'success',
+    //       summary: 'Success',
+    //       detail: `Admin '${res.user.name}' added successfully!`,
+    //     });
+    //   } else {
+    //     return this.messageService.add({
+    //       severity: 'error',
+    //       summary: 'Error',
+    //       detail: res.message,
+    //     });
+    //   }
+    // });
   }
 
   checkOldPassForm(form: NgForm) {
