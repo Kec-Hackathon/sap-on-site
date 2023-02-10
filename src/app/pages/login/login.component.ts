@@ -1,18 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
-  email:string='';
-  password:string='';
-  selectedState: string[] = [];
-  loading = false
+export class LoginComponent implements OnInit {
+  form!: FormGroup;
+  loading:boolean = false;
+  rememberState: string[] = [];
+  constructor(private formBuilder: FormBuilder) { }
 
-    load() {
-        this.loading = true;
-        setTimeout(() => this.loading = false, 1000);
-    }
+  ngOnInit() {
+    this.form = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    });
+  }
 
+load() {
+    this.loading = true;
+    setTimeout(() => this.loading = false, 1000);
 }
+}
+

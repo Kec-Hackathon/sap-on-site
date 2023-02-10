@@ -1,37 +1,60 @@
-<section>
-  <div class="login">
-    <h2>Welcome Back </h2>
-  <p>Welcome back! Please enter your details.</p>
+<div class="login-section">
   <div class="login-form">
-    <div class="p-field">
-      <label for="email" >Email</label><br>
-      <input
-        type="email"
-        pInputText
-        [(ngModel)]="email"
-        placeholder="e.g.example@kongu.edu"
-      />
-    </div>
-    <div class="p-field">
-      <label for="password" >Password</label><br>
-      <input
-        type="password"
-        pInputText
-        [(ngModel)]="password"
-        placeholder="Your Password"
-      />
-    </div>
-    <div class="helpers">
-      <div class="remember">
-      <p-checkbox name="group1" value="remember" [(ngModel)]="selectedState" inputId="r"></p-checkbox>
-      <label for="ny"> Remember Me</label>
+    <h2>Welcome Back !</h2>
+    <!-- <p>Welcome back! Please enter your details.</p> -->
+    <form [formGroup]="form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-control"
+          pInputText
+          placeholder="e.g.example@kongu.edu"
+        />
       </div>
-      <a href="#" style="color:var(--blue-800)">Forgot Password</a>
-    </div>
-    <p-button label="Sign In" icon="pi pi-sign-in" [loading]="loading" (onClick)="load()"></p-button>  </div>
-  <p id="sign-up">Dont you have account ?<a href="/signup"> Sign up </a>.</p>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="form-control"
+          pInputText
+          placeholder="Your Password"
+        />
+      </div>
+      <div class="helpers">
+        <div class="remember">
+          <p-checkbox
+            name="group1"
+            value="remember"
+            [(ngModel)]="rememberState"
+            inputId="r"
+          ></p-checkbox>
+          <label for="ny"> Remember Me</label>
+        </div>
+        <a href="#" style="color: var(--blue-800)">Forgot Password</a>
+      </div>
+      <p-button
+        label="Sign In"
+        icon="pi pi-sign-in"
+        [loading]="loading"
+        (onClick)="load()"
+        styleClass="btn"
+      ></p-button>
+      <p id="sign-up">
+        Dont you have account ?<a href="/signup"> Sign up </a>.
+      </p>
+    </form>
   </div>
   <div class="background">
-    <img src="../../../assets/img/logo-2.gif" alt="Kongu Logo" width="400" height="400">
+    <img
+      src="/assets/img/logo-2.gif"
+      alt="Kongu Logo"
+      width="400"
+      height="400"
+    />
   </div>
-</section>
+</div>
