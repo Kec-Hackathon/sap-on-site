@@ -2,7 +2,7 @@
     <div class="user_detail">
         <div class="content">
             <h2>{{greet}}, {{userDetail?.name | titlecase}}</h2>
-            <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" styleClass="mr-2"
+            <p-avatar [image]="userDetail?.profile" styleClass="mr-2"
                 size="xlarge" shape="circle" (click)="onProfileClicked()" [style]="{'cursor': 'pointer'}"></p-avatar>
         </div>
         <div class="cards">
@@ -13,8 +13,7 @@
                 {{markDetail?.mark}}
             </p-card>
             <p-card subheader="Mark need for Maximum" [style]="{'min-width': '10rem'}">
-                {{(100 - markDetail?.total) < 0 ? 0: (100 - markDetail?.total) }}
-            </p-card>
+                {{(100 - markDetail?.total) < 0 ? 0: (100 - markDetail?.total) }} </p-card>
         </div>
         <div class="upload-activity flex justify-content-end">
             <button pButton pRipple type="button" label="View Mark Table" *ngIf="!showMarkTable"
@@ -33,8 +32,7 @@
 
 <p-sidebar [(visible)]="showSidebar" position="right" [baseZIndex]="10000">
     <div class="sidebar_container">
-        <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" styleClass="mr-2"
-            size="xlarge" shape="circle"></p-avatar>
+        <p-avatar [image]="userDetail?.profile" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar>
         <h3>{{userDetail?.name}}</h3>
         <div class="theme-switch">
             <i class="pi pi-sun" style="font-size: 1.5rem"></i>

@@ -3,15 +3,12 @@ import { CommonModule } from '@angular/common';
 import { SignupComponent } from './signup.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {ButtonModule} from 'primeng/button';
-import {InputTextModule} from 'primeng/inputtext';
-import {PasswordModule} from 'primeng/password';
-import {DropdownModule} from 'primeng/dropdown';
-import {RadioButtonModule} from 'primeng/radiobutton';
-import {FileUploadModule} from 'primeng/fileupload';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { PrimengModule } from 'src/app/primeng.module';
+import { MessageService } from 'primeng/api';
+
 const routes: Routes = [
-  {path: '', component: SignupComponent}
+  { path: '', component: SignupComponent }
 ]
 
 @NgModule({
@@ -22,14 +19,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    FileUploadModule,
-    InputTextModule,
-    PasswordModule,
-    ButtonModule,
-    DropdownModule,
-    RadioButtonModule,
+    PrimengModule,
     HttpClientModule,
-    RouterModule.forChild(routes)
-  ]
+    RouterModule.forChild(routes),
+  ],
+  providers: [MessageService]
 })
 export class SignupModule { }

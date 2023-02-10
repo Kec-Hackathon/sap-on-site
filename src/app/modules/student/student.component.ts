@@ -53,8 +53,10 @@ export class StudentComponent implements OnInit {
 
     if (event.checked) {
       themeLink.href = 'arya-dark-blue.css';
+      localStorage.setItem('theme', 'arya-dark-blue.css');
     } else {
       themeLink.href = 'saga-light-blue.css';
+      localStorage.setItem('theme', 'saga-light-blue.css');
     }
   }
 }

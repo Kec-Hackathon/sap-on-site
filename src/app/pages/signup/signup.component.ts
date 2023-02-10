@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Signup } from './signup-form.data';
 import { MessageService } from 'primeng/api';
+import { SignupService } from './signup.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -14,38 +16,49 @@ export class SignupComponent {
   uploadedFiles: any[] = [];
   displayImage: string = '';
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private signupService: SignupService, private router: Router, private messageService: MessageService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       roll_no: ['', Validators.required],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       department: ['', Validators.required],
-      mentor_id: ['', Validators.required],
       year: ['', Validators.required],
       profile: ['', Validators.required],
     });
   }
 
   onSubmit() {
-    console.log(this.form.value);
+    this.loading = true;
 
-    if(this.form.valid) {
+    if (this.form.valid) {
       const formData = new FormData();
       formData.append('name', this.form.value.name);
       formData.append('email', this.form.value.email);
       formData.append('password', this.form.value.password);
       formData.append('roll_no', this.form.value.roll_no);
       formData.append('department', this.form.value.department);
-      formData.append('mentor_id', this.form.value.mentor_id);
       formData.append('year', this.form.value.year);
       formData.append('profile', this.form.value.profile);
+      formData.append('user_type', 'Student');
+
+      this.signupService.userSignup(formData).subscribe((res) => {
+        if (res.user) {
+          this.loading = false;
+          this.router.navigate([`s/${res.user._id}`])
+        } else {
+          this.loading = false;
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: res.message
+          })
+        }
+      })
     }
-    
-    this.loading = true;
-    setTimeout(() => (this.loading = false), 1000);
+
   }
 
   onUpload(event: any) {

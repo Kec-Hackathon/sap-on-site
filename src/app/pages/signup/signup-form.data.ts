@@ -24,7 +24,7 @@ export const Signup = [
     isDropdown: false,
     required: true,
     options: [],
-    placeholder: 'Email',
+    placeholder: 'Kongu email',
   },
   {
     id: 'password',
