@@ -1,58 +1,67 @@
 <section>
   <div class="background">
     <img
-      src="../../../assets/img/logo-2.gif"
+      src="/assets/img/logo-2.gif"
       alt="Kongu Logo"
       width="400"
       height="400"
+      class="logo"
     />
   </div>
   <div class="signup">
-    <h2>Hello !</h2>
+    <h2>Please Sign up for your account !</h2>
     <form [formGroup]="form">
       <div *ngFor="let item of signup">
-        <ng-container class="form-group" [ngSwitch]="'input'">
-          <div *ngSwitchCase="'input'">
-            <label [for]="item.label">{{ item.label }}</label>
-            <input
-              [type]="item.type"
-              [id]="item.id"
-              pInputText
-              [placeholder]="item.placeholder"
-              [formControlName]="item.id"
-            />
-          </div>
-          <div *ngSwitchCase="'select'">
-            <p-dropdown
-              [options]="item.options"
-              [formControlName]="item.id"
-              [placeholder]="item.placeholder"
-              [optionLabel]="item.id"
-              [showClear]="true"
-            ></p-dropdown>
-          </div>
-        </ng-container>
+        <div class="form-group" *ngIf="!item.isDropdown">
+          <label [for]="item.label">{{ item.label }}</label>
+          <input
+            [type]="item.type"
+            [id]="item.id"
+            pInputText
+            [placeholder]="item.placeholder"
+            [formControlName]="item.id"
+          />
+        </div>
+        <div *ngIf="item.isDropdown">
+          <label [for]="item.label" style="display: block">{{
+            item.label
+          }}</label>
+          <p-dropdown
+            [options]="item.options"
+            [formControlName]="item.id"
+            [placeholder]="item.placeholder"
+            [showClear]="true"
+            styleClass="dropdown"
+          ></p-dropdown>
+        </div>
       </div>
-      <div >
-        <label for="profile" class="label">Profile</label>
-        <p-fileUpload
-          #fubauto
-          mode="basic"
-          name="demo[]"
-          url="./upload.php"
-          accept="image/*"
-          (onUpload)="onBasicUploadAuto($event)"
-          [auto]="true"
-          chooseLabel="Browse"
-        ></p-fileUpload>
+      <div class="profile" style="display: flex;gap: 0.5rem; align-items: center;">
+        <div>
+          <label for="profile">Profile</label>
+          <p-fileUpload
+            #fubauto
+            mode="basic"
+            name="demo"
+            accept="image/*"
+            [maxFileSize]="2000000"
+            [customUpload]="true"
+            (uploadHandler)="onUpload($event)"
+            chooseLabel="Upload Scrap Image"
+            [auto]="true"
+            chooseLabel="Upload Image"
+            class="mr-2"
+          ></p-fileUpload>
+        </div>
+        <img *ngIf="displayImage" [width]="60" [height]="60" [src]="displayImage" alt="" />
       </div>
     </form>
     <p-button
       label="Sign Up"
       icon="pi pi-sign-in"
       [loading]="loading"
-      (onClick)="load()"
+      (click)="onSubmit()"
+      [disabled]="form.invalid"
     ></p-button>
-    <p id="sign-up">Already have an account ?<a href="/login"> Sign In </a>.</p>
+    <p id="sign-up">Already have an account ?<a routerLink="/login"> Sign In </a>.</p>
   </div>
 </section>
