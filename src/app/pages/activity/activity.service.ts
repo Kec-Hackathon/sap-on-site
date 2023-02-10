@@ -14,14 +14,14 @@ export class ActivityService {
 
     getActivityById(id: string) {
         return this.http.get<{ activity: any; message: string }>(
-            `${this.BACKEND_URL}activity/${id}`
+            `${this.BACKEND_URL}/activity/${id}`
         );
     }
 
     getUserActivityByUserId(id: string) {
         this.http
             .get<{ activities: any[]; message: string }>(
-                `${this.BACKEND_URL}activity/user-id/${id}`
+                `${this.BACKEND_URL}/activity/user-id/${id}`
             )
             .subscribe((res) => {
                 if (res.activities.length > 0) {
@@ -38,14 +38,14 @@ export class ActivityService {
 
     uploadNewActivity(activity: FormData) {
         return this.http.post<{ activity: any; message: string }>(
-            `${this.BACKEND_URL}activity/`,
+            `${this.BACKEND_URL}/activity/`,
             activity
         );
     }
 
     updateLockStatus(id: string, status: boolean) {
         return this.http.put<{ success: boolean; message: string }>(
-            `${this.BACKEND_URL}activity/lock-status/${id}`,
+            `${this.BACKEND_URL}/activity/lock-status/${id}`,
             { status: !status }
         );
     }
