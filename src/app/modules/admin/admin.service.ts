@@ -42,8 +42,10 @@ export class AdminService {
   }
 
   updateStudentMentorId(id: string, studentDetail: string): any {
-    console.log(studentDetail);
-    
     return this.http.put(`${this.BACKEND_URL}/user/update-admin/${id}`, studentDetail)
+  }
+
+  updateActivityStatus(id: string, activity: any) {
+    return this.http.put(`${this.BACKEND_URL}/activity/update-status/${id}`, activity)
   }
 }

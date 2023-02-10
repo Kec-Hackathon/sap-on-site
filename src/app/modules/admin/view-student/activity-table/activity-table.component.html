@@ -4,7 +4,7 @@
     <h2 *ngIf="studentActivitiesList.length == 0" class="text-center mt-5 font-semibold">
         No Activity Uploaded By The Student, Till Now!
     </h2>
-    <div *ngIf="studentActivitiesList.length > 0" class="card mt-5">
+    <div *ngIf="studentActivitiesList.length > 0" class="card">
         <p-table [value]="studentActivitiesList" [scrollable]="true" scrollHeight="450px"
             styleClass="p-datatable-gridlines">
             <ng-template pTemplate="caption">
@@ -47,12 +47,8 @@
                     <td>
                         <button pButton pRipple type="button" icon="pi pi-lock-open"
                             class="p-button-rounded p-button-help p-button-outlined mr-3" pTooltip="Lock Activity"
-                            tooltipPosition="top" (click)="updateLockStatus(activity.id, activity.is_locked)"
+                            tooltipPosition="top" (click)="updateLockStatus(activity._id, activity)"
                             *ngIf="!activity.is_locked"></button>
-                        <button pButton pRipple type="button" icon="pi pi-lock"
-                            class="p-button-rounded p-button-help p-button-outlined mr-3" pTooltip="Unlock Activity"
-                            tooltipPosition="top" (click)="updateLockStatus(activity.id, activity.is_locked)"
-                            *ngIf="activity.is_locked"></button>
                         <button pButton pRipple type="button" icon="pi pi-pencil"
                             class="p-button-rounded p-button-success p-button-outlined mr-3" pTooltip="Edit Activity"
                             tooltipPosition="top" *ngIf="!activity.is_locked"></button>
@@ -61,8 +57,7 @@
                             tooltipPosition="top" (click)="viewActivity(activity.id)"></button>
                         <button pButton pRipple type="button" icon="pi pi-trash"
                             class="p-button-rounded p-button-danger p-button-outlined mr-3" pTooltip="Delete Activity"
-                            tooltipPosition="top" (click)="deleteActivity($event, activity.id)"
-                            *ngIf="!activity.is_locked"></button>
+                            tooltipPosition="top" (click)="deleteActivity($event, activity.id)"></button>
                     </td>
                 </tr>
             </ng-template>

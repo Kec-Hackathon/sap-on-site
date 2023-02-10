@@ -28,10 +28,15 @@ export class ActivityTableComponent {
       this.studentId = params['student'];
       this.adminService.getUserActivityByUserId(params['student']).subscribe((res) => {
         this.studentActivitiesList = res.activites;
-        console.log(res);
-
       });
     });
+  }
+
+  updateLockStatus(id: string, activity: any) {
+    this.adminService.updateActivityStatus(id, activity).subscribe((res) => {
+      console.log(res);
+
+    })
   }
 
   // viewActivity(id: string) {
