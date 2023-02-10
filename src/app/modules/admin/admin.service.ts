@@ -32,4 +32,18 @@ export class AdminService {
   addNewMentor(mentorData: any): any {
     return this.http.post(`${this.BACKEND_URL}/user/signup`, mentorData)
   }
+
+  getStudentListByDepartment(department: string): any {
+    return this.http.get(`${this.BACKEND_URL}/user/s/department/${department}`)
+  }
+
+  getAdminListByDepartment(department: string): any {
+    return this.http.get(`${this.BACKEND_URL}/user/m/department/${department}`)
+  }
+
+  updateStudentMentorId(id: string, studentDetail: string): any {
+    console.log(studentDetail);
+    
+    return this.http.put(`${this.BACKEND_URL}/user/update-admin/${id}`, studentDetail)
+  }
 }

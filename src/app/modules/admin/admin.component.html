@@ -28,7 +28,7 @@
       </div>
       <div *ngIf="mentorDetail?.is_admin">
         <button pButton pRipple type="button" label="Assign Mentor" class="p-button-raised"
-          [routerLink]="['assign-mentor']"></button>
+          [routerLink]="['assign-mentor']" [queryParams]="{department: mentorDetail?.department}"></button>
       </div>
     </div>
   </div>
