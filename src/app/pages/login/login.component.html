@@ -1,7 +1,7 @@
+<p-toast></p-toast>
 <div class="login-section">
   <div class="login-form">
     <h2>Welcome Back !</h2>
-    <!-- <p>Welcome back! Please enter your details.</p> -->
     <form [formGroup]="form">
       <div class="form-group">
         <label for="email">Email</label>
@@ -10,9 +10,11 @@
           id="email"
           formControlName="email"
           class="form-control"
+          [ngClass]="{'ng-invalid ng-dirty': form.get('email')?.errors && formSubmitAttempt == true || form.get('email')?.pristine && formSubmitAttempt == true}"
           pInputText
           placeholder="e.g.example@kongu.edu"
         />
+        <small class="p-error" *ngIf="form.get('email')?.errors && formSubmitAttempt == true || form.get('email')?.pristine && formSubmitAttempt == true">Invalid Email!</small>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
@@ -23,13 +25,18 @@
           class="form-control"
           pInputText
           placeholder="Your Password"
+          [ngClass]="{'ng-invalid ng-dirty': form.get('password')?.errors && formSubmitAttempt == true || form.get('password')?.pristine && formSubmitAttempt == true}"
+
         />
+        <small class="p-error" *ngIf="form.get('password')?.errors && formSubmitAttempt == true || form.get('password')?.pristine && formSubmitAttempt == true">Invalid Email!</small>
       </div>
       <div class="helpers">
         <div class="remember">
           <p-checkbox
             name="group1"
-            value="remember"
+            [trueValue]="true"
+            [falseValue]="false"
+            [value]="true"
             formControlName="rememberMe"
             inputId="r"
           ></p-checkbox>
@@ -41,7 +48,7 @@
         label="Sign In"
         icon="pi pi-sign-in"
         [loading]="loading"
-        (onClick)="load()"
+        (click)="onSubmit()"
         styleClass="login-btn"
       ></p-button>
       <p id="sign-up">
