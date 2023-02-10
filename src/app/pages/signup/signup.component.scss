@@ -1,0 +1,51 @@
+section {
+  width: clamp(340px, 70%, 1400px);
+  height: 100vh;
+  display: flex;
+  margin-inline: auto;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+}
+section h2 {
+  color: var(--blue-800);
+  margin: 1rem 0rem;
+}
+
+.signup{
+  width: clamp(300px, 40%, 900px);
+  margin: 1rem auto;
+
+}
+
+
+.p-feild{
+  margin: 1rem 0rem;
+}
+
+input{
+  width: 100%;
+
+}
+.background {
+  width: clamp(140px,160px,460px);
+  height: clamp(140px,160px,460px);
+  border-radius: 1rem;
+  background-color: var(--surface-200);
+  align-content: center;
+}
+
+
+img{
+  width: clamp(100px,120px,400px);
+  height: clamp(100px,120px,400px);
+  z-index: 1;
+  margin-top: 1rem;
+}
+
+
+.signup > .dropdown{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}

@@ -1,1 +1,35 @@
-<p>signup works!</p>
+<section>
+  <div class="background">
+    <img src="../../../assets/img/logo-2.gif" alt="Kongu Logo" width="400" height="400">
+  </div>
+  <div class="signup">
+    <h2>Welcome Back !</h2>
+    <p id="sign-up">Already have an account ?<a href="/login"> Sign In </a>.</p>
+    <div class="signup-form">
+      <div class="p-feild" *ngFor="let item of signup">
+        <div *ngIf="!item.isDropdown">
+          <label for="{{ item.label }}" class="p-sr-only">{{
+            item.label
+          }}</label>
+          <input
+            id="{{ item.label }}"
+            type="{{ item.type }}"
+            pInputText
+            placeholder="{{ item.label }}"
+            required="item.required"
+          />
+        </div>
+        <div  class="dropdown" *ngIf="item.isDropdown">
+          <p-dropdown
+            [options]="item.options"
+            [(ngModel)]="Department"
+            placeholder="{{ item.label }}"
+            optionLabel="name"
+            [showClear]="true"
+            [style]="{ width: '80%'  }"
+          ></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <p-button label="Sign Up" icon="pi pi-sign-in" [loading]="loading" (onClick)="load()"></p-button>  </div>
+</section>

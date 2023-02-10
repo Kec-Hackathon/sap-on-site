@@ -8,4 +8,11 @@ export class LoginComponent {
   email:string='';
   password:string='';
   selectedState: string[] = [];
+  loading = false
+
+    load() {
+        this.loading = true;
+        setTimeout(() => this.loading = false, 1000);
+    }
+
 }

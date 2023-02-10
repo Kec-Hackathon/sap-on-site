@@ -28,9 +28,10 @@
       </div>
       <a href="#" style="color:var(--blue-800)">Forgot Password</a>
     </div>
-    <p-button class="p-button-sm" label="Sgin In" icon="pi pi-sign-in" ></p-button>
-  </div>
+    <p-button label="Sign In" icon="pi pi-sign-in" [loading]="loading" (onClick)="load()"></p-button>  </div>
   <p id="sign-up">Dont you have account ?<a href="/signup"> Sign up </a>.</p>
   </div>
-<img src="../../../assets/img/logo-2.gif" alt="Kongu Logo" width="400" height="400">
+  <div class="background">
+    <img src="../../../assets/img/logo-2.gif" alt="Kongu Logo" width="400" height="400">
+  </div>
 </section>
