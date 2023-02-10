@@ -45,15 +45,6 @@ export const Signup = [
     placeholder: 'Department',
   },
   {
-    id: 'mentor_id',
-    label: 'Mentor',
-    type: 'select',
-    isDropdown: true,
-    required: true,
-    options: ['EIE', 'ECE', 'CSE', 'IT'],
-    placeholder: 'Mentor Name',
-  },
-  {
     id: 'year',
     label: 'Year',
     type: 'select',
