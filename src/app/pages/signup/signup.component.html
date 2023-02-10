@@ -5,6 +5,7 @@
       alt="Kongu Logo"
       width="400"
       height="400"
+      class="logo"
     />
   </div>
   <div class="signup">
@@ -29,32 +30,38 @@
             [options]="item.options"
             [formControlName]="item.id"
             [placeholder]="item.placeholder"
-            [optionLabel]="item.id"
             [showClear]="true"
             styleClass="dropdown"
           ></p-dropdown>
         </div>
       </div>
-      <div class="profile">
-        <label for="profile" >Profile</label>
-        <p-fileUpload
-          #fubauto
-          mode="basic"
-          name="demo[]"
-          url="./upload.php"
-          accept="image/*"
-          (onUpload)="onBasicUploadAuto($event)"
-          [auto]="true"
-          chooseLabel="Upload Profile"
-        ></p-fileUpload>
+      <div class="profile" style="display: flex;gap: 0.5rem; align-items: center;">
+        <div>
+          <label for="profile">Profile</label>
+          <p-fileUpload
+            #fubauto
+            mode="basic"
+            name="demo"
+            accept="image/*"
+            [maxFileSize]="2000000"
+            [customUpload]="true"
+            (uploadHandler)="onUpload($event)"
+            chooseLabel="Upload Scrap Image"
+            [auto]="true"
+            chooseLabel="Upload Image"
+            class="mr-2"
+          ></p-fileUpload>
+        </div>
+        <img *ngIf="displayImage" [width]="60" [height]="60" [src]="displayImage" alt="" />
       </div>
     </form>
     <p-button
       label="Sign Up"
       icon="pi pi-sign-in"
       [loading]="loading"
-      (onClick)="load()"
+      (click)="onSubmit()"
+      [disabled]="form.invalid"
     ></p-button>
-    <p id="sign-up">Already have an account ?<a href="/login"> Sign In </a>.</p>
+    <p id="sign-up">Already have an account ?<a routerLink="/login"> Sign In </a>.</p>
   </div>
 </section>
