@@ -41,7 +41,7 @@ export const Signup = [
     type: 'select',
     isDropdown: true,
     required: true,
-    options: ['EIE', 'ECE', 'CSE', 'IT'],
+    options: ['eie', 'ece', 'cse', 'it'],
     placeholder: 'Department',
   },
   {
