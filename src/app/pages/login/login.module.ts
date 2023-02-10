@@ -7,6 +7,10 @@ import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import {PasswordModule} from 'primeng/password';
 import {CheckboxModule} from 'primeng/checkbox';
+import {ToastModule} from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { HttpClientModule } from '@angular/common/http';
+
 const routes: Routes = [
   {path: '', component: LoginComponent}
 ]
@@ -23,8 +27,10 @@ const routes: Routes = [
     InputTextModule,
     PasswordModule,
     CheckboxModule,
-    RouterModule.forChild(routes)
-
-  ]
+    ToastModule,
+    RouterModule.forChild(routes),
+    HttpClientModule
+  ],
+  providers: [MessageService]
 })
 export class LoginModule { }
