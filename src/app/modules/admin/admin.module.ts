@@ -9,7 +9,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-
+import {CardModule} from 'primeng/card';
 const routes: Routes = [
   { path: '', children: [{ path: ':id', component: AdminComponent }] },
 ];
@@ -26,6 +26,7 @@ const routes: Routes = [
     DropdownModule,
     ReactiveFormsModule,
     FormsModule,
+    CardModule,
     RouterModule.forChild(routes),
   ],
   providers:[MessageService]

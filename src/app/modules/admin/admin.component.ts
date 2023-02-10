@@ -31,9 +31,9 @@ export class AdminComponent implements OnInit {
     department: 'EIE',
   };
   availableStudents = [
-    { name: 'lorem', rollno: '19eir000', year: '4th year', id: '123' },
-    { name: 'lorem', rollno: '20eir000', year: '3rd year', id: '123' },
-    { name: 'lorem', rollno: '21eir000', year: '2nd year', id: '234' },
+    { name: 'Monesh MS', rollno: '!9EIR056', mail:'monesh@kongu.edu',year: '4th year', id: '123' },
+    { name: 'Paveen Kumar D', rollno: '19EIR056',mail:'paveen@kongu.edu', year: '4th year', id: '123' },
+    { name: 'Sree Vadhani M', rollno: '19EIR086', mail:'sree@kongu.edu',year: '4th year', id: '234' },
   ];
   openAddAdminDialog: boolean = false;
   openChangePasswordDialog:boolean = false;
