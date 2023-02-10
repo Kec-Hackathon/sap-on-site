@@ -30,7 +30,7 @@
           <p-checkbox
             name="group1"
             value="remember"
-            [(ngModel)]="rememberState"
+            formControlName="rememberMe"
             inputId="r"
           ></p-checkbox>
           <label for="ny"> Remember Me</label>
@@ -42,7 +42,7 @@
         icon="pi pi-sign-in"
         [loading]="loading"
         (onClick)="load()"
-        styleClass="btn"
+        styleClass="login-btn"
       ></p-button>
       <p id="sign-up">
         Dont you have account ?<a href="/signup"> Sign up </a>.
