@@ -1,59 +1,42 @@
 export const Signup=[
     {
-      label: 'First Name',
+      id:'name',
+      label: 'Name',
       type: 'text',
       isDropdown: false,
       required: true,
       options: [],
-      depenceOn: [],
+      placeholder: 'Name',
     },
     {
-      label: 'Last Name',
+      id:'roll_no',
+      label: 'Roll Number',
       type: 'text',
       isDropdown: false,
-      required: false,
+      required: true,
       options: [],
-      depenceOn: ['First Name'],
+      placeholder: 'Roll Number',
     },
     {
+      id:'email',
       label: 'Email',
       type: 'email',
       isDropdown: false,
       required: true,
       options: [],
+      placeholder: 'Email',
     },
     {
+      id:'password',
       label: 'Password',
       type: 'password',
       isDropdown: false,
       required: true,
       options: [],
-      depenceOn: [],
+      placeholder: 'Password'
     },
     {
-      label: 'Confirm Password',
-      type: 'password',
-      isDropdown: false,
-      required: true,
-      options: [],
-      depenceOn: ['Confrim Password'],
-    },
-    // {
-    //   label: 'Gender',
-    //   type: 'select',
-    //   isDropdown: true,
-    //   required: true,
-    //   options: [
-    //     {
-    //       name: 'Male',
-    //     },
-    //     {
-    //       name: 'Female',
-    //     },
-    //   ],
-    //   depenceOn: [],
-    // },
-    {
+      id:'department',
       label: 'Department',
       type: 'select',
       isDropdown: true,
@@ -64,9 +47,10 @@ export const Signup=[
         { name: 'IT' },
         { name: 'ECE' },
       ],
-      depenceOn: [],
+      placeholder: 'Department'
     },
     {
+      id:'mentor_id',
       label: 'Mentor',
       type: 'select',
       isDropdown: true,
@@ -77,9 +61,10 @@ export const Signup=[
         { name: 'IT' },
         { name: 'ECE' },
       ],
-      depenceOn: ['Department'],
+      placeholder: 'Mentor Name'
     },
     {
+      id:'year',
       label: 'Year',
       type: 'select',
       isDropdown: true,
@@ -93,7 +78,7 @@ export const Signup=[
         { name: '2025' },
         { name: '2026' },
       ],
-      depenceOn: [],
-    },
+      placeholder: 'Year'
+    }
 
 ]
