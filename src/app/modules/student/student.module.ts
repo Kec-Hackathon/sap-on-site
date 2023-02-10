@@ -4,6 +4,8 @@ import { StudentComponent } from './student.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
+import {AvatarModule} from 'primeng/avatar';
+
 const routes: Routes = [
   {
     path: '', children: [
@@ -19,7 +21,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    HttpClientModule
+    HttpClientModule,
+    AvatarModule
   ]
 })
 export class StudentModule { }

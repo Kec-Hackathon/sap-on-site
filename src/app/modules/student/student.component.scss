@@ -1,0 +1,29 @@
+section {
+    min-height: 100vh;
+    width: 100vw;
+
+    .user_detail {
+        width: 100%;
+        height: 30vh;
+        background-image: url(https://source.unsplash.com/random/1400x500?city,nature,forest);
+        background-repeat: no-repeat;
+        background-size: 100%;
+
+        .content {
+            width: 90%;
+            margin: 0 auto;
+            padding: 2rem 0;
+            opacity: 1;
+            color: #ffffff;
+            text-shadow: 0 2px 5px black, 0 2px 5px black, 0 2px 5px black, 0 2px 5px black;
+
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+    }
+}
+
+.p-avatar img {
+    cursor: pointer;
+}

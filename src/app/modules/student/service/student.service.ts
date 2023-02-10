@@ -11,6 +11,6 @@ export class StudentService {
   constructor(private http: HttpClient) { }
 
   getUserDetailById(id: string) {
-    return this.http.get(`${this.BACKEND_URL}/user/${id}`)
+    return this.http.get<{user: any, message: string}>(`${this.BACKEND_URL}/user/${id}`)
   }
 }
