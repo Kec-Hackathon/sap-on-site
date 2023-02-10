@@ -19,6 +19,8 @@ import { DialogModule } from 'primeng/dialog';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { AvatarModule } from 'primeng/avatar';
+import { SidebarModule } from 'primeng/sidebar';
 
 @NgModule({
     exports: [
@@ -41,6 +43,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
         InputSwitchModule,
         ConfirmPopupModule,
         ConfirmDialogModule,
+        AvatarModule,
+        SidebarModule
     ],
 })
 export class PrimengModule { }

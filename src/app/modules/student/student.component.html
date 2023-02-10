@@ -13,6 +13,10 @@
             <p-card></p-card>
             <p-card></p-card>
         </div>
+        <div class="upload-activity">
+            <button pButton pRipple type="button" label="Upload Activity" class="p-button-raised p-button-warning"
+                [routerLink]="['/activity/' + userDetail?._id + '/paper']"></button>
+        </div>
     </div>
 </section>
 
