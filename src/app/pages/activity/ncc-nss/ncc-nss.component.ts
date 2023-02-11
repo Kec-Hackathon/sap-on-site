@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NccNssMarkData } from './data/ncc-nss-data.mark';
+import { NccNssMarkData } from 'src/assets/form-data/ncc-nss-data.mark';
 
 @Component({
   selector: 'app-ncc-nss',

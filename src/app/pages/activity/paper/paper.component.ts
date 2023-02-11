@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ActivityService } from '../activity.service';
-import { PaperMarkData } from './data/paper-mark.data';
+import { PaperMarkData } from 'src/assets/form-data/paper-mark.data';
 
 @Component({
   selector: 'app-paper',
@@ -26,7 +26,7 @@ export class PaperComponent implements OnInit {
     private messageService: MessageService,
     private activityService: ActivityService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this._initForm();
@@ -85,23 +85,11 @@ export class PaperComponent implements OnInit {
     this.activityService.uploadNewActivity(form).subscribe((res) => {
       this.isLoading = false;
       if (res.activity != null) {
-        // this.markService
-        //   .updateMark(this.id, this.paperForm.value.mark, 'paper')
-        //   .subscribe((res) => {
-        //     if (res.success) {
-        //       this.messageService.add({
-        //         severity: 'success',
-        //         summary: 'Success',
-        //         detail: 'Activity Saved, ' + res.message,
-        //       });
-        //     } else {
-        //       this.messageService.add({
-        //         severity: 'warn',
-        //         summary: 'Warning',
-        //         detail: 'Activity Saved, ' + res.message,
-        //       });
-        //     }
-        //   });
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Activity Saved, ' + res.message,
+        });
       } else {
         this.messageService.add({
           severity: 'error',

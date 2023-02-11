@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ActivityService } from '../activity.service';
-import { GovtExamMarkData } from './data/govt-exam-mark.data';
+import { GovtExamMarkData } from 'src/assets/form-data/govt-exam-mark.data';
 
 @Component({
   selector: 'app-govt-exam',
@@ -23,8 +23,7 @@ export class GovtExamComponent implements OnInit {
     private messageService: MessageService,
     private activityService: ActivityService,
     private route: ActivatedRoute,
-    // private markService: MarkService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this._initForm();
@@ -66,23 +65,11 @@ export class GovtExamComponent implements OnInit {
     this.activityService.uploadNewActivity(form).subscribe((res) => {
       this.isLoading = false;
       if (res.activity != null) {
-        // this.markService
-        //   .updateMark(this.id, this.govtForm.value.mark, 'gate_govt_exam')
-        //   .subscribe((res) => {
-        //     if (res.success) {
-        //       this.messageService.add({
-        //         severity: 'success',
-        //         summary: 'Success',
-        //         detail: 'Activity Saved, ' + res.message,
-        //       });
-        //     } else {
-        //       this.messageService.add({
-        //         severity: 'warn',
-        //         summary: 'Warning',
-        //         detail: 'Activity Saved, ' + res.message,
-        //       });
-        //     }
-        //   });
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Activity Saved, ' + res.message,
+        });
       } else {
         this.messageService.add({
           severity: 'error',

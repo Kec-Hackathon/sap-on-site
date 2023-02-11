@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ActivityService } from '../activity.service';
-import { EntrepreneurshipMarkData } from './data/entrepreneurship-data.mark';
+import { EntrepreneurshipMarkData } from 'src/assets/form-data/entrepreneurship-data.mark';
 
 @Component({
   selector: 'app-entrepreneurship',
@@ -23,7 +23,7 @@ export class EntrepreneurshipComponent implements OnInit {
     private messageService: MessageService,
     private activityService: ActivityService,
     private route: ActivatedRoute,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this._initForm();
@@ -66,23 +66,11 @@ export class EntrepreneurshipComponent implements OnInit {
     this.activityService.uploadNewActivity(form).subscribe((res) => {
       this.isLoading = false;
       if (res.activity != null) {
-        // this.markService
-        //   .updateMark(this.id, this.entrepreneurshipForm.value.mark, 'entrepreneurship')
-        //   .subscribe((res) => {
-        //     if (res.success) {
-        //       this.messageService.add({
-        //         severity: 'success',
-        //         summary: 'Success',
-        //         detail: 'Activity Saved, ' + res.message,
-        //       });
-        //     } else {
-        //       this.messageService.add({
-        //         severity: 'warn',
-        //         summary: 'Warning',
-        //         detail: 'Activity Saved, ' + res.message,
-        //       });
-        //     }
-        //   });
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Activity Saved, ' + res.message,
+        });
       } else {
         this.messageService.add({
           severity: 'error',

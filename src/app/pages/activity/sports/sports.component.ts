@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SportsMarkData } from './data/sports-mark.data';
+import { SportsMarkData } from 'src/assets/form-data/sports-mark.data';
 
 @Component({
   selector: 'app-sports',
