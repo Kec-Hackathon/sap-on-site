@@ -107,7 +107,11 @@ export class ShowMarksComponent implements OnInit {
       let arr = [];
       columns.forEach(col => {
         let colName = col.toLowerCase();
-        arr.push(String(node.data[colName]))
+        let data = (node.data[colName]);        
+        if (typeof data !== 'string') {
+          data = String(data)
+        }
+        arr.push(data)
       })
       rows.push(arr);
     })
