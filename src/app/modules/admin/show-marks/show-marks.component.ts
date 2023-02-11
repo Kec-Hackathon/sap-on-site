@@ -63,7 +63,11 @@ export class ShowMarksComponent implements OnInit {
         }
       }
     },
-    { headerName: 'Verified By Admin', field: 'is_locked', filter: true },
+    {
+      headerName: 'Cretificate', field: 'image', cellRenderer: (data) => {        
+        return `<img src=${data.data.image} style="width: 35px; height: 35px;" />`;
+      }
+    },
     { headerName: 'Activity', field: 'activity', filter: true },
   ];
   rowData$: Observable<any[]>;
@@ -107,7 +111,7 @@ export class ShowMarksComponent implements OnInit {
       let arr = [];
       columns.forEach(col => {
         let colName = col.toLowerCase();
-        let data = (node.data[colName]);        
+        let data = (node.data[colName]);
         if (typeof data !== 'string') {
           data = String(data)
         }
