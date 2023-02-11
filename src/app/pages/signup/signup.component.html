@@ -1,6 +1,6 @@
 <section>
-  <div class="" >
-    <img src="/assets/img/logo-2.gif" alt="Kongu Logo" width="400" height="400" class="logo" />
+  <div class="img" >
+    <img src="/assets/gif/signup.gif" alt="Kongu Logo" width="400" height="400" class="logo" />
   </div>
   <div class="background">
     <h2>Please Sign up for your account !</h2>
@@ -12,7 +12,7 @@
           <input [type]="item.type" [id]="item.id" pInputText [placeholder]="item.placeholder"
             [formControlName]="item.id" />
         </div>
-        <div *ngIf="item.isDropdown">
+        <div *ngIf="item.isDropdown"> 
           <label [for]="item.label" style="display: block">
             {{item.label}}
           </label>
