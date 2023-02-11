@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin.service';
 import * as FileSaver from 'file-saver';
-import autoTable from 'jspdf-autotable'
+import jsPDF from 'jspdf';
+import 'jspdf-autotable'
 import { ActivatedRoute } from '@angular/router';
+import autoTable from 'jspdf-autotable';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-show-marks',
@@ -10,49 +13,130 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./show-marks.component.scss']
 })
 export class ShowMarksComponent implements OnInit {
-  activitesList: [];
+  department: string;
+  columnDefs: any = [
+    { headerName: 'Name', field: 'name', filter: true },
+    { headerName: 'Roll No.', field: 'roll_no', filter: true },
+    {
+      headerName: 'Year', field: 'year', filter: 'agNumberColumnFilter',
+      filterParams: {
+        allowedCharPattern: '\\d\\-\\,',
+        numberParser: text => {
+          return text == null ? null : parseFloat(text.replace(',', '.'));
+        }
+      }
+    },
+    {
+      headerName: 'Uploaded At', field: 'uploadedAt', cellRenderer: (data) => {
+        return data.value ? (new Date(data.value)).toLocaleDateString() : '';
+      }, filter: 'agDateColumnFilter',
+      filterParams: {
+        comparator: (filterLocalDateAtMidnight, cellValue) => {
+          const dateAsString = cellValue;
+
+          if (dateAsString == null) {
+            return 0;
+          }
+
+          const dateParts = dateAsString.split('/');
+          const year = Number(dateParts[2]);
+          const month = Number(dateParts[1]) - 1;
+          const day = Number(dateParts[0]);
+          const cellDate = new Date(year, month, day);
+
+          if (cellDate < filterLocalDateAtMidnight) {
+            return -1;
+          } else if (cellDate > filterLocalDateAtMidnight) {
+            return 1;
+          }
+          return 0;
+        }
+      }
+    },
+    { headerName: 'Event', field: 'event', filter: true },
+    {
+      headerName: 'Mark', field: 'mark', filter: 'agNumberColumnFilter',
+      filterParams: {
+        allowedCharPattern: '\\d\\-\\,',
+        numberParser: text => {
+          return text == null ? null : parseFloat(text.replace(',', '.'));
+        }
+      }
+    },
+    { headerName: 'Verified By Admin', field: 'is_locked', filter: true },
+    { headerName: 'Activity', field: 'activity', filter: true },
+  ];
+  rowData$: Observable<any[]>;
+  defaultCol = { filter: true, sortable: true, }
+  gridOptions: any;
+  columnApi: any;
+  private gridApi: any;
 
   constructor(private adminService: AdminService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((query) => {
       if (query['department']) {
-        this.adminService.getActivityByDepartment(query['department']).subscribe((res) => {
-          if (res.length > 0) {
-            this.activitesList = res;
-          }
-        })
+        this.department = query['department']
+        this.rowData$ = this.adminService.getActivityByDepartment(query['department'])
       }
-
     })
 
   }
 
-  exportPdf() {
-    import("jspdf").then(jsPDF => {
-      import("jspdf-autotable").then(x => {
-        const doc = new jsPDF.default("l", "mm");
-        autoTable(doc, { body: this.activitesList });
-        doc.save('sap.pdf');
+  onGridReady(params: any) {
+    this.gridApi = params.api
+    this.columnApi = params.columnApi
+  }
+
+  exportPdf(type: string) {
+    const pdf = new jsPDF();
+    const filteredData = this.gridApi.selectAllFiltered();
+    const getRows = this.gridApi.getSelectedRows();
+
+    let columns = [];
+    let rows = [];
+    let filteredRows = [];
+    let updatedFilterArr = []
+
+    this.columnApi.getAllColumns().forEach((column) => {
+      columns.push(column.getColDef().headerName)
+    })
+
+    this.gridApi.forEachNode(node => {
+      let arr = [];
+      columns.forEach(col => {
+        let colName = col.toLowerCase();
+        arr.push(String(node.data[colName]))
       })
+      rows.push(arr);
     })
-  }
 
-  exportExcel() {
-    import("xlsx").then(xlsx => {
-      const worksheet = xlsx.utils.json_to_sheet(this.activitesList);
-      const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
-      const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
-      this.saveAsExcelFile(excelBuffer, "sap");
-    });
-  }
+    getRows.forEach((ele) => {
+      let arr = [];
+      columns.forEach(col => {
+        let colName = col.toLowerCase();
+        arr.push(String(ele[colName]))
+      })
+      filteredRows.push(arr);
+    })
 
-  saveAsExcelFile(buffer: any, fileName: string): void {
-    let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-    let EXCEL_EXTENSION = '.xlsx';
-    const data: Blob = new Blob([buffer], {
-      type: EXCEL_TYPE
-    });
-    FileSaver.saveAs(data, fileName + '_export_' + EXCEL_EXTENSION);
+    if (type === 'All') {
+
+      autoTable(pdf, {
+        head: [columns],
+        body: rows
+      })
+
+      pdf.save(this.department + '_table.pdf')
+    } else if (type === 'Filter') {
+
+      autoTable(pdf, {
+        head: [columns],
+        body: filteredRows
+      })
+
+      pdf.save(this.department + '_filtered_table.pdf')
+    }
   }
 }

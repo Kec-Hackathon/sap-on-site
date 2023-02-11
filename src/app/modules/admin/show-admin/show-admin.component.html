@@ -1,0 +1,29 @@
+<section>
+    <div>
+        <button pButton pRipple type="button" label="Back" (click)="location.back()" icon="pi pi-angle-left"
+            class="p-button-danger p-button-text"></button>
+    </div>
+    <p-table [value]="adminList" styleClass="p-datatable-sm">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Added At</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-mentor>
+            <tr>
+                <td>{{mentor.name}}</td>
+                <td>{{mentor.email}}</td>
+                <td>{{mentor.createdAt | date: "dd/MM/yy hh:mm:ss a"}}</td>
+                <th>
+                    <button pButton pRipple type="button" icon="pi pi-trash"
+                        class="p-button-rounded p-button-danger p-button-outlined mr-3" pTooltip="Delete Admin"
+                        tooltipPosition="top" *ngIf="!mentor.is_admin"></button>
+                </th>
+            </tr>
+        </ng-template>
+    </p-table>
+
+</section>

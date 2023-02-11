@@ -72,8 +72,7 @@
       </div>
       <div class="button">
         <button pButton pRipple type="button" label="Show {{mentorDetail?.department | uppercase}} Mentor"
-          icon="pi pi-users" class="p-button-raised p-button-warning" [routerLink]="['show-all-mentors']"
-          [queryParams]="[{department: mentorDetail?.department}]"></button>
+          icon="pi pi-users" class="p-button-raised p-button-warning" (click)="showDepartmentMentors()"></button>
       </div>
       <div class="button">
         <button pButton pRipple type="button" label="Show {{mentorDetail?.department | uppercase}} Mark"

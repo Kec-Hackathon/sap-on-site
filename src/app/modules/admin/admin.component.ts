@@ -72,6 +72,10 @@ export class AdminComponent implements OnInit {
     this.router.navigate([`a/${this.id}/show-all-mark`], { queryParams: { department: this.mentorDetail.department } })
   }
 
+  showDepartmentMentors() {
+    this.router.navigate([`a/${this.id}/show-all-mentor`], { queryParams: { department: this.mentorDetail.department } })
+  }
+
   onSubmit() {
     if (this.addMentorForm?.invalid) return;
 
@@ -88,8 +92,6 @@ export class AdminComponent implements OnInit {
     };
 
     this.adminService.addNewMentor(mentor).subscribe((res) => {
-      console.log(res);
-
       this.isLoading = false;
       this.openAddAdminDialog = false;
       if (res.user != null) {
