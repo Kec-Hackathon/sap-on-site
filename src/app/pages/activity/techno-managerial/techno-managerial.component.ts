@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TechnoManagerialMarkData } from './data/techno-managerial-mark.data';
+import { TechnoManagerialMarkData } from 'src/assets/form-data/techno-managerial-mark.data';
 
 @Component({
   selector: 'app-techno-managerial',

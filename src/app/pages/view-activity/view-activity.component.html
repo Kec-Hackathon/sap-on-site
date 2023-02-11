@@ -161,7 +161,8 @@
                                 <span class="text-900">{{ imageName }}</span>
                             </div>
                             <button pbutton pripple icon="pi pi-download" pTooltip="Download Image" label="Download"
-                                class="p-element p-ripple p-button-outlined mt-2 md:mt-0 p-button p-component">
+                                (click)="downloadProfile(activityDetial?.image)"
+                                class="p-element p-ripple p-button-outlined mt-2 md:mt-0 p-button p-component" download>
                                 <span class="p-button-icon p-button-icon-left pi pi-download" aria-hidden="true"></span>
                                 <span class="p-button-label">Download</span>
                                 <span class="p-ink"></span>

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ActivityService } from '../activity.service';
-import { NptelMarkData } from './data/nptel-data.mark';
+import { NptelMarkData } from 'src/assets/form-data/nptel-data.mark';
 
 @Component({
   selector: 'app-nptel',
@@ -24,7 +24,7 @@ export class NptelComponent implements OnInit {
     private messageService: MessageService,
     private activityService: ActivityService,
     private route: ActivatedRoute,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this._initForm();
@@ -69,23 +69,11 @@ export class NptelComponent implements OnInit {
     this.activityService.uploadNewActivity(form).subscribe((res) => {
       this.isLoading = false;
       if (res.activity != null) {
-        // this.markService
-        //   .updateMark(this.id, this.nptelForm.value.mark, 'nptel')
-        //   .subscribe((res) => {
-        //     if (res.success) {
-        //       this.messageService.add({
-        //         severity: 'success',
-        //         summary: 'Success',
-        //         detail: 'Activity Saved, ' + res.message,
-        //       });
-        //     } else {
-        //       this.messageService.add({
-        //         severity: 'warn',
-        //         summary: 'Warning',
-        //         detail: 'Activity Saved, ' + res.message,
-        //       });
-        //     }
-        //   });
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Activity Saved, ' + res.message,
+        });
       } else {
         this.messageService.add({
           severity: 'error',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProjectPaperMarkData } from './data/project-paper-data.mark';
+import { ProjectPaperMarkData } from 'src/assets/form-data/project-paper-data.mark';
 
 @Component({
   selector: 'app-project-paper',

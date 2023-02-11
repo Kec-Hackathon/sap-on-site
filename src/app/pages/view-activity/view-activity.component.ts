@@ -39,4 +39,8 @@ export class ViewActivityComponent implements OnInit {
       }
     })
   }
+
+  downloadProfile(imageLink: string) {
+    window.open(imageLink);
+  }
 }

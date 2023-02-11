@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ActivityService } from '../activity.service';
-import { ClubMarkData } from './data/club-mark.data';
+import { ClubMarkData } from 'src/assets/form-data/club-mark.data';
 
 @Component({
   selector: 'app-club',
@@ -24,7 +24,7 @@ export class ClubComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private messageService: MessageService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this._initForm();
@@ -70,23 +70,11 @@ export class ClubComponent implements OnInit {
     this.activityService.uploadNewActivity(form).subscribe((res) => {
       this.isLoading = false;
       if (res.activity != null) {
-        // this.markService
-        //   .updateMark(this.id, this.clubForm.value.mark, 'club')
-        //   .subscribe((res) => {
-        //     if (res.success) {
-        //       this.messageService.add({
-        //         severity: 'success',
-        //         summary: 'Success',
-        //         detail: 'Activity Saved, ' + res.message,
-        //       });
-        //     } else {
-        //       this.messageService.add({
-        //         severity: 'warn',
-        //         summary: 'Warning',
-        //         detail: 'Activity Saved, ' + res.message,
-        //       });
-        //     }
-        //   });
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Activity Saved, ' + res.message,
+        });
       } else {
         this.messageService.add({
           severity: 'error',

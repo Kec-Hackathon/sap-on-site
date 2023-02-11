@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PlacementMarkData } from './data/placement-mark.data';
+import { PlacementMarkData } from 'src/assets/form-data/placement-mark.data';
 
 @Component({
   selector: 'app-placement',

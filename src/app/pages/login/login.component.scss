@@ -1,6 +1,6 @@
 .login-section {
   width: 90vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   margin-inline: auto;
   flex-wrap: wrap;
@@ -20,7 +20,7 @@
   margin: 1rem auto;
   text-align: left;
   border-radius: 1rem;
-  background-color: var(--blue-50);
+  background-color: var(--surface-200);
   padding: 2rem;
 }
 
