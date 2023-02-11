@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin.service';
 import * as FileSaver from 'file-saver';
 import autoTable from 'jspdf-autotable'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-show-marks',
@@ -11,14 +12,20 @@ import autoTable from 'jspdf-autotable'
 export class ShowMarksComponent implements OnInit {
   activitesList: [];
 
-  constructor(private adminService: AdminService){}
+  constructor(private adminService: AdminService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.adminService.getActivityByDepartment('EIE').subscribe((res)=>{
-      if(res.length > 0) {
-        this.activitesList = res;
+    this.route.queryParams.subscribe((query) => {
+      if (query['department']) {
+        this.adminService.getActivityByDepartment(query['department']).subscribe((res) => {
+          if (res.length > 0) {
+            this.activitesList = res;
+          }
+        })
       }
+
     })
+
   }
 
   exportPdf() {
