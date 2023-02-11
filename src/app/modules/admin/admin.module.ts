@@ -25,6 +25,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [AdminComponent, ViewStudentComponent, ActivityTableComponent, MarkTableComponent, ShowMarksComponent, AssignMentorComponent],
+  providers: [MessageService, ConfirmationService],
   imports: [
     CommonModule,
     RouterModule,
@@ -32,8 +33,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forChild(routes),
     PrimengModule,
-    AgGridModule
-  ],
-  providers: [MessageService, ConfirmationService]
+    AgGridModule,
+  ]
 })
 export class AdminModule { }

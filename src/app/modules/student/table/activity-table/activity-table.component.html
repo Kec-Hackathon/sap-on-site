@@ -42,7 +42,7 @@
                             tooltipPosition="top" *ngIf="!activity.is_locked"></button>
                         <button pButton pRipple type="button" icon="pi pi-eye"
                             class="p-button-rounded p-button-info p-button-outlined mr-3" pTooltip="View Activity"
-                            tooltipPosition="top" (click)="viewActivity(activity.id)"></button>
+                            tooltipPosition="top" (click)="viewActivity(activity._id)"></button>
                         <button pButton pRipple type="button" icon="pi pi-trash"
                             class="p-button-rounded p-button-danger p-button-outlined mr-3" pTooltip="Delete Activity"
                             tooltipPosition="top" (click)="deleteActivity($event, activity.id)"

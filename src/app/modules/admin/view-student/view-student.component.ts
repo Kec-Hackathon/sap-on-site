@@ -21,38 +21,27 @@ export class ViewStudentComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private adminService: AdminService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((query)=>{
-      if(query['student']) {
+    this.route.queryParams.subscribe((query) => {
+      if (query['student']) {
         this.adminService.getUserDetailById(query['student']).subscribe((res) => {
-          if (res.user) {            
+          if (res.user) {
             this.studentDetail = res.user;
             this.studentId = res.user._id;
-            this.adminService.getMarkByUserId(this.studentId).subscribe((marks)=>{
-              if(marks.mark) {
+            this.adminService.getMarkByUserId(this.studentId).subscribe((marks) => {
+              if (marks.mark) {
                 this.markDetails = marks.mark
               }
-              
+
             })
-            // this.markService.getUpdatedMark().subscribe((res) => {
-            //   if (res.mark != null) {
-            //     this.markDetails = res.mark[0];
-            //     this.totalMark = 100 - this.markDetails?.total;
-            //     if (this.totalMark <= 0) {
-            //       this.markNeeded = false;
-            //     } else {
-            //       this.markNeeded = true;
-            //     }
-            //   }
-            // });
           }
         });
       }
-      
+
     })
   }
 
-  openMailDailog() {}
+  openMailDailog() { }
 }

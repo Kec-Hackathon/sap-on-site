@@ -16,6 +16,11 @@ const routes: Routes = [
       import('./pages/activity/activity.module').then((m) => m.ActivityModule),
   },
   {
+    path: 'v/:id',
+    loadChildren: () =>
+      import('./pages/view-activity/view-activity.module').then((m) => m.ViewActivityModule),
+  },
+  {
     path: 's',
     loadChildren: () => import("./modules/student/student.module").then((m) => m.StudentModule),
   },

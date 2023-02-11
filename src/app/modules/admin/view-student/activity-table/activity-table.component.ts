@@ -14,6 +14,8 @@ export class ActivityTableComponent {
   studentActivitiesList = [];
   studentId: string;
   adminId: string;
+  showActivityDialog: boolean = false;
+  showActivity: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,82 +41,9 @@ export class ActivityTableComponent {
     })
   }
 
-  // viewActivity(id: string) {
-  //   this.router.navigate([`view-a/a/${id}`], {
-  //     queryParams: { adminId: this.adminId },
-  //   });
-  // }
-
-  // updateLockStatus(id: string, status: boolean) {
-  //   let lockStatus: string;
-  //   status ? (lockStatus = 'Unlock') : (lockStatus = 'Lock');
-  //   this.confirmationService.confirm({
-  //     target: event.target,
-  //     message: `Are you sure that you want to ${lockStatus} this activity?`,
-  //     accept: () => {
-  //       this.activityService.updateLockStatus(id, status).subscribe((res) => {
-  //         if (res.success) {
-  //           this.activityService.getUserActivityByUserId(this.studentId);
-  //           this.messageService.add({
-  //             severity: 'success',
-  //             summary: 'Success',
-  //             detail: res.message,
-  //           });
-  //         } else {
-  //           this.messageService.add({
-  //             severity: 'error',
-  //             summary: 'Error',
-  //             detail: res.message,
-  //           });
-  //         }
-  //       });
-  //     },
-  //     reject: () => { },
-  //   });
-  // }
-
-  // deleteActivity(event: Event, id: string) {
-  //   this.confirmationService.confirm({
-  //     target: event.target,
-  //     message: 'Are you sure that you want to proceed?',
-  //     accept: () => {
-  //       this.activityService.deleteActivity(id).subscribe((res) => {
-  //         if (res.success) {
-  //           this.activityService.getUserActivityByUserId(this.studentId);
-  //           this.markService
-  //             .updateMark(
-  //               this.studentId,
-  //               -res.activity.mark,
-  //               res.activity.activity_type
-  //             )
-  //             .subscribe((result) => {
-  //               if (result.success) {
-  //                 this.markService.getMarkByUserId(this.studentId);
-  //                 this.messageService.add({
-  //                   severity: 'success',
-  //                   summary: 'Success',
-  //                   detail: res.message,
-  //                 });
-  //               } else {
-  //                 this.messageService.add({
-  //                   severity: 'error',
-  //                   summary: 'Error',
-  //                   detail: res.message,
-  //                 });
-  //               }
-  //             });
-  //         } else {
-  //           this.messageService.add({
-  //             severity: 'error',
-  //             summary: 'Error',
-  //             detail: res.message,
-  //           });
-  //         }
-  //       });
-  //     },
-  //     reject: () => { },
-  //   });
-  // }
+  viewActivity(activity: any) {
+    this.router.navigate([`v/${activity._id}`])
+  }
 
   exportPdf() {
     import("jspdf").then(jsPDF => {
