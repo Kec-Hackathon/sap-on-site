@@ -1,0 +1,117 @@
+<section class="mt-8">
+  <div class="surface-card p-4">
+    <form [formGroup]="nccForm" class="grid formgrid p-fluid">
+      <div class="field mb-4 col-6">
+        <label for="eventName" class="font-medium text-900">Event Name</label>
+        <input
+          id="eventName"
+          formControlName="eventName"
+          type="text"
+          pinputtext
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="eventVenue" class="font-medium text-900">
+          Event Venue (With Institution Location)
+        </label>
+        <input
+          id="eventVenue"
+          formControlName="eventVenue"
+          type="text"
+          pinputtext
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="position" class="font-medium text-900"
+          >Position in NSS/NCC</label
+        >
+        <input
+          id="position"
+          formControlName="position"
+          type="text"
+          pinputtext
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="mark" class="font-medium text-900"> Camp Range </label>
+        <p-dropdown
+          [options]="availableMarks"
+          placeholder="Select the range"
+          optionLabel="label"
+          [showClear]="true"
+          id="depatment"
+          (onChange)="onChange($event)"
+          formControlName="campRange"
+        ></p-dropdown>
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="dateRange" class="font-medium text-900">
+          Event Date Range
+        </label>
+        <p-calendar
+          dateFormat="dd-mm-yy"
+          id="dateRange"
+          selectionMode="range"
+          [readonlyInput]="true"
+          inputId="range"
+          formControlName="eventDateRange"
+        ></p-calendar>
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="mark" class="font-medium text-900">Mark</label>
+        <input
+          id="mark"
+          type="number"
+          pinputtext
+          class="p-inputtext p-component p-element"
+          readonly
+          formControlName="mark"
+        />
+      </div>
+      <div class="field my-4 flex col-12">
+        <p-fileUpload
+          #fubauto
+          mode="basic"
+          name="demo"
+          accept="image/*"
+          maxFileSize="2000000"
+          customUpload="true"
+          (uploadHandler)="onImageUpload($event)"
+          [auto]="true"
+          chooseLabel="Upload Proof"
+          class="mr-2"
+        ></p-fileUpload>
+        <img
+          *ngIf="imageDisplay"
+          [width]="100"
+          [src]="imageDisplay"
+          alt="Proof"
+        />
+      </div>
+      <div class="surface-border border-top-3 opacity-50 mb-3 col-12"></div>
+      <div class="col-12 flex justify-content-center">
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Submit"
+          class="p-button-raised p-button-success w-auto"
+          (click)="onFormSubmitted()"
+          [disabled]="nccForm.invalid"
+          *ngIf="!isLoading"
+        ></button>
+        <p-progressSpinner
+          [style]="{ width: '50px', height: '50px' }"
+          styleClass="custom-spinner"
+          strokeWidth="8"
+          fill="var(--surface-ground)"
+          animationDuration=".5s"
+          *ngIf="isLoading"
+        ></p-progressSpinner>
+      </div>
+    </form>
+  </div>
+</section>

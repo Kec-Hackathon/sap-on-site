@@ -1,0 +1,96 @@
+.login-section {
+  width: 90vw;
+  min-height: 100vh;
+  display: flex;
+  margin-inline: auto;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.login-section h2 {
+  color: var(--blue-800);
+  margin: 1rem 0rem;
+  text-align: center;
+  font-size: clamp(1rem,2rem,4rem);
+}
+.login-form{
+  width: clamp(350px, 50%, 900px);
+  margin: 1rem auto;
+  text-align: left;
+  border-radius: 1rem;
+  background-color: var(--surface-200);
+  padding: 2rem;
+}
+
+form{
+  width: 100%;
+  margin: auto;
+  max-width: 350px;
+}
+
+.form-group {
+  margin: 1rem auto;
+}
+
+.form-group > label{
+  margin-bottom: 0.25px;
+  width: 100%;
+}
+.form-group > input{
+  margin: 0.5rem 0rem 0rem 0rem;
+  width: 100%;
+}
+
+.helpers {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0rem;
+  gap: 1rem;
+}
+.remember {
+  display: flex;
+  justify-content: center;
+}
+.background {
+  width: 48%;
+  height: 95%;
+  margin: auto;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 670px){
+  .background{
+    height: 25%;
+  }
+
+  img {
+    height: 120px !important;
+    width: 120px !important;
+  }
+}
+@media (max-width: 500px){
+  .background{
+    height: 25%;
+  }
+}
+
+p{
+  margin: 1rem 0rem;
+}
+
+label{
+  margin:0rem 0.25rem;
+}
+
+.log-img{
+  width: clamp(32px,50px,100px);
+  height: clamp(32px,50px,100px);
+  margin-top: 1rem;
+}

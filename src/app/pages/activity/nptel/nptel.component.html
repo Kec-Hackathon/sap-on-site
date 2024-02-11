@@ -1,0 +1,144 @@
+<section class="mt-1">
+  <div class="surface-card p-4">
+    <form [formGroup]="nptelForm" class="grid formgrid p-fluid">
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="registraionNumber" class="font-medium text-900">
+          NPTEL Registration Number
+        </label>
+        <input
+          id="registraionNumber"
+          type="text"
+          pinputtext
+          formControlName="registraionNumber"
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="courseCode" class="font-medium text-900">
+          Course Code as given by the host institution
+        </label>
+        <input
+          id="courseCode"
+          type="text"
+          pinputtext
+          formControlName="courseCode"
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="courseName" class="font-medium text-900">
+          Course Name
+        </label>
+        <input
+          id="courseName"
+          type="text"
+          pinputtext
+          formControlName="courseName"
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="hostInstitution" class="font-medium text-900">
+          Host Institution Name
+        </label>
+        <input
+          id="hostInstitution"
+          type="text"
+          pinputtext
+          formControlName="hostInstitution"
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="organizationName" class="font-medium text-900">
+          Organization Name
+        </label>
+        <input
+          id="organizationName"
+          type="text"
+          pinputtext
+          placeholder="Eg: NPTEL, GAIN"
+          formControlName="organizationName"
+          class="p-inputtext p-component p-element"
+        />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="creditTransfer" class="font-medium text-900">
+          Applying for Credit Transfer
+        </label>
+        <p-dropdown
+          id="creditTransfer"
+          formControlName="creditTransfer"
+          [options]="type"
+          [showClear]="true"
+          placeholder="Credit Transfer"
+        ></p-dropdown>
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label class="font-medium text-900" for="credit">
+          Credits Assigned
+        </label>
+        <p-dropdown
+          id="credit"
+          formControlName="credit"
+          [options]="availableCredit"
+          placeholder="Select your Credit"
+          [showClear]="true"
+          (onChange)="onCreditChanged($event)"
+        ></p-dropdown>
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="mark" class="font-medium text-900"> Mark </label>
+        <input
+          id="mark"
+          type="text"
+          pinputtext
+          formControlName="mark"
+          class="p-inputtext p-component p-element"
+          readonly
+        />
+      </div>
+      <div class="field my-4 flex col-12">
+        <p-fileUpload
+          #fubauto
+          mode="basic"
+          name="demo"
+          accept="image/*"
+          maxFileSize="2000000"
+          customUpload="true"
+          (uploadHandler)="onImageUpload($event)"
+          [auto]="true"
+          chooseLabel="Upload Proof"
+          class="mr-2"
+        ></p-fileUpload>
+        <img
+          *ngIf="imageDisplay"
+          [width]="100"
+          [src]="imageDisplay"
+          alt="Proof"
+        />
+      </div>
+      <div class="surface-border border-top-3 opacity-50 mb-3 col-12"></div>
+      <div class="col-12 flex justify-content-center">
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Submit"
+          class="p-button-raised p-button-success w-auto"
+          (click)="onFormSubmitted()"
+          *ngIf="!isLoading"
+          [disabled]="nptelForm.invalid"
+        ></button>
+        <p-progressSpinner
+          [style]="{ width: '50px', height: '50px' }"
+          styleClass="custom-spinner"
+          strokeWidth="8"
+          fill="var(--surface-ground)"
+          animationDuration=".5s"
+          *ngIf="isLoading"
+        ></p-progressSpinner>
+      </div>
+    </form>
+  </div>
+</section>

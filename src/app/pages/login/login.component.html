@@ -1,1 +1,92 @@
-<p>login works!</p>
+<p-toast></p-toast>
+<div class="login-section">
+  <div class="background">
+    <img src="/assets/gif/login.gif" alt="" />
+  </div>
+  <div class="login-form">
+    <div class="flex justify-content-center">
+      <img
+        class="logo-img"
+        src="/assets/img/logo-2.gif"
+        alt="Kongu Logo"
+        width="72px"
+        height="72px"
+      />
+    </div>
+    <h2>Welcome Back !</h2>
+    <form [formGroup]="form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-control"
+          [ngClass]="{
+            'ng-invalid ng-dirty':
+              (form.get('email')?.errors && formSubmitAttempt == true) ||
+              (form.get('email')?.pristine && formSubmitAttempt == true)
+          }"
+          pInputText
+          placeholder="e.g.example@kongu.edu"
+        />
+        <small
+          class="p-error"
+          *ngIf="
+            (form.get('email')?.errors && formSubmitAttempt == true) ||
+            (form.get('email')?.pristine && formSubmitAttempt == true)
+          "
+          >Invalid Email!</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="form-control"
+          pInputText
+          placeholder="Your Password"
+          [ngClass]="{
+            'ng-invalid ng-dirty':
+              (form.get('password')?.errors && formSubmitAttempt == true) ||
+              (form.get('password')?.pristine && formSubmitAttempt == true)
+          }"
+        />
+        <small
+          class="p-error"
+          *ngIf="
+            (form.get('password')?.errors && formSubmitAttempt == true) ||
+            (form.get('password')?.pristine && formSubmitAttempt == true)
+          "
+          >Invalid Email!</small
+        >
+      </div>
+      <div class="helpers">
+        <div class="remember">
+          <p-checkbox
+            name="group1"
+            [trueValue]="true"
+            [falseValue]="false"
+            [value]="true"
+            formControlName="rememberMe"
+            inputId="r"
+          ></p-checkbox>
+          <label for="ny"> Remember Me</label>
+        </div>
+        <a href="#" style="color: var(--blue-800)">Forgot Password</a>
+      </div>
+      <p-button
+        label="Sign In"
+        icon="pi pi-sign-in"
+        [loading]="loading"
+        (click)="onSubmit()"
+        styleClass="login-btn"
+      ></p-button>
+      <p id="sign-up">
+        Dont you have account ?<a routerLink="/signup"> Sign up </a>.
+      </p>
+    </form>
+  </div>
+</div>

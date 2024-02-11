@@ -1,0 +1,195 @@
+<p-toast></p-toast>
+<div class="block-content">
+    <div class="lg:px-4 md:px-6 px-4 py-4">
+        <section class="surface-card p-2 shadow-2 border-round grid grid-nogutter">
+            <div class="col-12 md:col-7">
+                <div class="flex justify-content-between align-items-center">
+                    <div>
+                        <button pButton pRipple type="button" label="Back" (click)="location.back()"
+                            icon="pi pi-angle-left" class="p-button-danger p-button-text"></button>
+                    </div>
+                    <div class="mr-0 lg:mr-8 text-center">
+                        <div class="font-medium text-2xl text-900">
+                            {{ activityDetial?.uploader_id.name | titlecase }}
+                        </div>
+                        <div class="text-700 mb-2">
+                            ( {{ activityDetial?.uploader_id.roll_no | uppercase }} |
+                            {{ activityDetial?.uploader_id.year }} )
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-nogutter border-top-2 surface-border mt-2">
+                    <div class="col-12 p-3 text-center" *ngIf="activityDetial?.activity_type">
+                        <div class="text-700 font-medium mb-2">
+                            Activity Type =
+                            <span class="text-900">
+                                {{ activityDetial?.activity_type | titlecase }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.event_name">
+                        <div class="text-500 font-medium mb-2">Event Name</div>
+                        <div class="text-900">
+                            {{ activityDetial?.event_name | titlecase }}
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.course_name">
+                        <div class="text-500 font-medium mb-2">Course Name</div>
+                        <div class="text-900">
+                            {{ activityDetial?.course_name | titlecase }}
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.course_code">
+                        <div class="text-500 font-medium mb-2">Course Code</div>
+                        <div class="text-900">
+                            {{ activityDetial?.course_code | titlecase }}
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.organization_name">
+                        <div class="text-500 font-medium mb-2">Organization Name</div>
+                        <div class="text-900">
+                            {{ activityDetial?.organization_name | titlecase }}
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.credit">
+                        <div class="text-500 font-medium mb-2">Credit</div>
+                        <div class="text-900">
+                            {{ activityDetial?.credit | titlecase }}
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.credit_transfer">
+                        <div class="text-500 font-medium mb-2">
+                            Appling For Credit Transfer
+                        </div>
+                        <div class="text-900">
+                            {{ activityDetial?.credit_transfer | uppercase }}
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.club_name">
+                        <div class="text-500 font-medium mb-2">Club Name</div>
+                        <div class="text-900">
+                            {{ activityDetial?.club_name | titlecase }}
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.event_venue">
+                        <div class="text-500 font-medium mb-2">Event Venue</div>
+                        <div class="text-900">
+                            {{ activityDetial?.event_venue | titlecase }}
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.exam_name">
+                        <div class="text-500 font-medium mb-2">Exam Name</div>
+                        <div class="text-900">
+                            {{ activityDetial?.exam_name | titlecase }}
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.exam_venue">
+                        <div class="text-500 font-medium mb-2">Exam Venue</div>
+                        <div class="text-900">
+                            {{ activityDetial?.exam_venue | titlecase }}
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.exam_level">
+                        <div class="text-500 font-medium mb-2">Exam Level</div>
+                        <div class="text-900">
+                            {{ activityDetial?.exam_level }}
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.event_date">
+                        <div class="text-500 font-medium mb-2">Event Date</div>
+                        <div class="text-900">
+                            {{ activityDetial?.event_date | date: "dd-MM-yy" }}
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.title">
+                        <div class="text-500 font-medium mb-2">Title</div>
+                        <div class="text-900">{{ activityDetial?.title | titlecase }}</div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.position">
+                        <div class="text-500 font-medium mb-2">Position</div>
+                        <div class="text-900">
+                            {{ activityDetial?.position | titlecase }}
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.workshop_name">
+                        <div class="text-500 font-medium mb-2">Workshop Name</div>
+                        <div class="text-900">
+                            {{ activityDetial?.workshop_name | titlecase }}
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.prize_amount">
+                        <div class="text-500 font-medium mb-2">Prize Amount</div>
+                        <div class="text-900">{{ activityDetial?.prize_amount }}</div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.mode">
+                        <div class="text-500 font-medium mb-2">Mode</div>
+                        <div class="text-900">{{ activityDetial?.mode }}</div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.event_date_range">
+                        <div class="text-500 font-medium mb-2">Date Range</div>
+                        <div class="text-900">
+                            {{ date[0] | date: "mediumDate" }} -
+                            {{ date[1] | date: "mediumDate" }}
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.event_mode">
+                        <div class="text-500 font-medium mb-2">Event Mode</div>
+                        <div class="text-900">
+                            {{ activityDetial?.event_mode | titlecase }}
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.type">
+                        <div class="text-500 font-medium mb-2">Type</div>
+                        <div class="text-900">{{ activityDetial?.type | titlecase }}</div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3">
+                        <div class="text-500 font-medium mb-2">Mark</div>
+                        <div class="text-900">{{ activityDetial?.mark }}</div>
+                    </div>
+                    <div class="col-12 md:col-4 p-3">
+                        <div class="text-500 font-medium mb-2">Uploaded At</div>
+                        <div class="text-900">
+                            {{ activityDetial?.createdAt | date: "dd-MM-yy hh:mm a" }}
+                        </div>
+                    </div>
+                    <div class="col-12 p-3 bottom-0 mt-5">
+                        <div class="text-500 font-medium mb-3">Proof Image</div>
+                        <div
+                            class="flex md:align-items-center md:justify-content-between border-top-1 surface-border p-3 flex-column md:flex-row">
+                            <div class="flex align-items-center">
+                                <span class="block pi pi-file mr-2"></span>
+                                <span class="text-900">{{ imageName }}</span>
+                            </div>
+                            <button pbutton pripple icon="pi pi-download" pTooltip="Download Image" label="Download"
+                                (click)="downloadProfile(activityDetial?.image)"
+                                class="p-element p-ripple p-button-outlined mt-2 md:mt-0 p-button p-component" download>
+                                <span class="p-button-icon p-button-icon-left pi pi-download" aria-hidden="true"></span>
+                                <span class="p-button-label">Download</span>
+                                <span class="p-ink"></span>
+                            </button>
+                        </div>
+                        <div class="border-top-1 surface-border p-5 flex justify-content-center">
+                            <button pButton pRipple type="button" label="Edit Activity"
+                                class="p-button-raised p-button-success mx-2 hidden lg:block" icon="pi pi-pencil"
+                                *ngIf="!activityDetial?.is_locked"></button>
+                            <button pButton pRipple type="button" label="Delete Activity"
+                                class="p-button-raised p-button-danger mx-2 hidden lg:block" icon="pi pi-trash"
+                                *ngIf="!activityDetial?.is_locked" (click)="deleteActivity()"></button>
+                            <button pButton pRipple type="button" label="Activity Locked"
+                                class="p-button-raised p-button-help mx-2" icon="pi pi-lock"
+                                *ngIf="activityDetial?.is_locked"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 md:col-1"></div>
+            <div class="col-12 md:col-4 flex align-items-center">
+                <img [src]="activityDetial?.image" [width]="300" class="block xl:hidden" alt="Certificate" />
+                <img [src]="activityDetial?.image" [width]="450" class="hidden xl:block" alt="Certificate" />
+            </div>
+        </section>
+    </div>
+</div>
+
+<p-confirmDialog [style]="{ width: '30vw' }" [baseZIndex]="10000"
+    rejectButtonStyleClass="p-button-text"></p-confirmDialog>

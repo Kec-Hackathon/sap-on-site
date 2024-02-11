@@ -1,0 +1,10 @@
+<section>
+    <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf('All')" class="p-button-warning mr-2"
+    label="All Data"></button>
+    <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf('Filter')" class="p-button-secondary mr-2"
+    label="Filtered Data"></button>
+    <ag-grid-angular #agGrid style="width: 100%; height: 80vh; margin: auto" class="ag-theme-alpine"
+        [rowData]="rowData$ | async" [columnDefs]="columnDefs" [defaultColDef]="defaultCol"
+        (gridReady)="onGridReady($event)">
+    </ag-grid-angular>
+</section>

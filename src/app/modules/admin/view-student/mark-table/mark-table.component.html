@@ -1,0 +1,31 @@
+<p-toast></p-toast>
+<section>
+    <div class="card">
+        <p-table styleClass="datatable-gridlines" [value]="studentActivityMarks" responsiveLayout="scroll" [scrollable]="true" scrollHeight="450px">
+            <ng-template pTemplate="caption">
+                <div class="flex justify-content-end">
+                    <button pButton pRipple type="button" icon="pi pi-cloud-download" label="Excel"
+                        pTooltip="Download as Excel" class="p-button-help"></button>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th pSortableColumn="event">
+                        Activity <p-sortIcon field="event"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="mark">
+                        Mark Obtained <p-sortIcon field="mark"></p-sortIcon>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-detail>
+                <tr>
+                    <td class="event-title">
+                        {{ detail.event | titlecase }}
+                    </td>
+                    <td>{{ detail.mark }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</section>

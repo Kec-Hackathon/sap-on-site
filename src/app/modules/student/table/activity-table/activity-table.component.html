@@ -1,0 +1,55 @@
+<p-toast></p-toast>
+<p-confirmPopup></p-confirmPopup>
+<section>
+    <h2 *ngIf="studentActivitiesList.length == 0" class="text-center mt-5 font-semibold">
+        No Activity Uploaded!
+    </h2>
+    <div *ngIf="studentActivitiesList.length > 0" class="card mt-5">
+        <p-table [value]="studentActivitiesList" [scrollable]="true" scrollHeight="350px"
+            styleClass="p-datatable-gridliness p-datatable-sm">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Name</th>
+                    <th pSortableColumn="mark">
+                        Mark<p-sortIcon field="mark"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="createdAt">
+                        Added On <p-sortIcon field="createdAt"></p-sortIcon>
+                    </th>
+                    <th>Certificate</th>
+                    <th></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-activity>
+                <tr>
+                    <td>
+                        {{ activity?.event_name | titlecase }}
+                        {{ activity?.club_name | titlecase }}
+                        {{ activity?.course_name | titlecase }}
+                        {{ activity?.exam_name | titlecase }}
+                    </td>
+                    <td>{{ activity?.mark }}</td>
+                    <td>
+                        {{ activity?.createdAt | date: "dd/MM/yy hh:mm:ss a" }}
+                    </td>
+                    <td>
+                        <img [src]="activity?.image" [height]="50" alt="Certificate" />
+                    </td>
+
+                    <td>
+                        <button pButton pRipple type="button" icon="pi pi-pencil"
+                            class="p-button-rounded p-button-success p-button-outlined mr-3" pTooltip="Edit Activity"
+                            tooltipPosition="top" *ngIf="!activity.is_locked"></button>
+                        <button pButton pRipple type="button" icon="pi pi-eye"
+                            class="p-button-rounded p-button-info p-button-outlined mr-3" pTooltip="View Activity"
+                            tooltipPosition="top" (click)="viewActivity(activity._id)"></button>
+                        <button pButton pRipple type="button" icon="pi pi-trash"
+                            class="p-button-rounded p-button-danger p-button-outlined mr-3" pTooltip="Delete Activity"
+                            tooltipPosition="top" (click)="deleteActivity($event, activity.id)"
+                            *ngIf="!activity.is_locked"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</section>

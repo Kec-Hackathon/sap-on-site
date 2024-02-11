@@ -1,0 +1,49 @@
+<section>
+    <p-table #dt [value]="studentsList" [globalFilterFields]="['name','email','year','mentor_id.name']"
+        styleClass="p-datatable-gridlines" [scrollable]="true" scrollHeight="600px"
+        [tableStyle]="{'min-height': '80vh'}">
+        <ng-template pTemplate="caption">
+            <div class="flex justify-content-between align-items-center">
+                <button pButton pRipple icon="pi pi-angle-left" type="button" label="Back"
+                    class="p-button-danger p-button-text" (click)="location.back()"></button>
+                <h3>Update Mentors' Here</h3>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        placeholder="Search keyword" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>
+                    <div class="flex justify-content-center align-items-center">
+                        Year
+                        <p-columnFilter type="text" field="year" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th>
+                    <div class="flex justify-content-center align-items-center">
+                        Current Mentor
+                        <p-columnFilter type="text" field="mentor_id.name" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th>Mentor</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-student>
+            <tr>
+                <td>{{student.name}}</td>
+                <td>{{student.email}}</td>
+                <td class="text-center">{{student.year}}</td>
+                <td class="text-center">{{student.mentor_id ? student.mentor_id?.name : '-'}}</td>
+                <td>
+                    <p-dropdown placeholder="Choose Mentor" [options]="adminList" optionLabel="name" optionValue="_id"
+                        (onChange)="onChangeMentor($event, student)"></p-dropdown>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</section>

@@ -1,0 +1,43 @@
+<section>
+    <div class="user_detail">
+        <div class="content">
+            <h2>{{greet}}, {{userDetail?.name | titlecase}}</h2>
+            <p-avatar [image]="userDetail?.profile" styleClass="mr-2"
+                size="xlarge" shape="circle" (click)="onProfileClicked()" [style]="{'cursor': 'pointer'}"></p-avatar>
+        </div>
+        <div class="cards">
+            <p-card subheader="Total Marks" [style]="{'min-width': '10rem'}">
+                {{markDetail?.total}}
+            </p-card>
+            <p-card subheader="Marks Obtained" [style]="{'min-width': '10rem'}">
+                {{markDetail?.mark}}
+            </p-card>
+            <p-card subheader="Mark need for Maximum" [style]="{'min-width': '10rem'}">
+                {{(100 - markDetail?.total) < 0 ? 0: (100 - markDetail?.total) }} </p-card>
+        </div>
+        <div class="upload-activity flex justify-content-end">
+            <button pButton pRipple type="button" label="View Mark Table" *ngIf="!showMarkTable"
+                (click)="showMarkTable = true" class="p-button-raised p-button-secondary mr-2"></button>
+            <button pButton pRipple type="button" label="View Activity Table" (click)="showMarkTable = false"
+                *ngIf="showMarkTable" class="p-button-raised p-button-secondary mr-2"></button>
+            <button pButton pRipple type="button" label="Upload Activity" class="p-button-raised p-button-warning mr-2"
+                [routerLink]="['/activity/' + userDetail?._id + '/paper']"></button>
+        </div>
+        <div class="table">
+            <app-activity-table *ngIf="!showMarkTable"></app-activity-table>
+            <app-mark-table *ngIf="showMarkTable"></app-mark-table>
+        </div>
+    </div>
+</section>
+
+<p-sidebar [(visible)]="showSidebar" position="right" [baseZIndex]="10000">
+    <div class="sidebar_container">
+        <p-avatar [image]="userDetail?.profile" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar>
+        <h3>{{userDetail?.name}}</h3>
+        <div class="theme-switch">
+            <i class="pi pi-sun" style="font-size: 1.5rem"></i>
+            <p-inputSwitch (onChange)="onThemeChange($event)"></p-inputSwitch>
+            <i class="pi pi-moon" style="font-size: 1.5rem"></i>
+        </div>
+    </div>
+</p-sidebar>
